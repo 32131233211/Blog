@@ -14,6 +14,12 @@
 import SeccionBase from "../../../../components/SeccionBase.astro";
 import TextoPendiente from "../../../../components/TextoPendiente.astro";
 
+const JUSTIFICACION: readonly string[] = [
+  "El uso de dispositivos electrónicos, especialmente los teléfonos celulares, se ha convertido en una herramienta fundamental para la comunicación en el día a día, el acceso a la información y la realización de diferentes actividades de la vida cotidiana. Sin embargo, no todas las personas cuentan con los conocimientos y habilidades necesarias para utilizar estas tecnologías de manera adecuada, lo que puede generar dificultades para realizar acciones básicas como comunicarse mediante aplicaciones, utilizar el correo electrónico, descargar documentos o navegar por Internet.",
+  "A esta situación se suma la probabilidad de posibles riesgos asociados al uso de herramientas digitales. El desconocimiento sobre prácticas de seguridad puede hacer que las personas sean más vulnerables ante estafas, mensajes fraudulentos, enlaces maliciosos, aplicaciones inseguras o el uso inadecuado de contraseñas. Por esta razón, adquirir conocimientos básicos sobre el manejo y la seguridad de los dispositivos electrónicos es importante para aprovechar sus beneficios y reducir los riesgos durante su utilización.",
+  "Este proyecto busca contribuir a solucionar estos problemas mediante un proceso de capacitaciones. Durante este proceso se abordarán temas relacionados con el reconocimiento y manejo del celular, las herramientas de comunicación digital, las pautas de seguridad y la navegación responsable en Internet. De esta manera, se pretende que los participantes desarrollen mayor confianza y autonomía en el uso de sus dispositivos, al mismo tiempo que adquieren herramientas para identificar y prevenir posibles situaciones de riesgo digital.",
+];
+
 interface Referencia {
   /** Cita completa en normas APA. */
   readonly cita: string;
@@ -39,18 +45,7 @@ const REFERENCIAS: readonly Referencia[] = [
     <!-- ---------- Justificación ---------- -->
     <article class="card border border-line">
       <div class="flex flex-col gap-sm">
-        <TextoPendiente>
-          Argumentación de la problemática abordada: por qué exige una intervención
-          y qué pasa si no se atiende.
-        </TextoPendiente>
-        <TextoPendiente>
-          Justificación desde el carácter académico y científico: qué conocimientos
-          del programa se ponen en juego y en qué evidencia se apoya la propuesta.
-        </TextoPendiente>
-        <TextoPendiente>
-          Aportes concretos que el proyecto genera en la comunidad específica donde
-          se desarrolla.
-        </TextoPendiente>
+        {JUSTIFICACION.map((parrafo) => <p class="text-text-muted">{parrafo}</p>)}
       </div>
     </article>
 

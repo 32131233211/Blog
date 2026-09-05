@@ -10,9 +10,11 @@
      · Fotografías y geolocalización del territorio.
 
    CÓMO COMPLETAR LAS FOTOS:
-   copiar las imágenes a  public/assets/territorio/  y reemplazar
-   cada <figure> pendiente por una imagen real, conservando el
-   <figcaption> (el pie de foto es parte del entregable).
+   copiar cada imagen a  public/assets/territorio/  y en el arreglo
+   FOTOS de abajo poner esa ruta en `src`, junto con su `alt` (qué
+   se ve, para quien no puede ver la imagen) y su `descripcion`
+   (el pie de foto, que es parte del entregable). Mientras `src`
+   sea null, se sigue mostrando el marcador punteado.
 
    LOS MAPAS YA ESTÁN PUESTOS:
    se renderizan con <MapaUbicacion>, un mapa por lugar. Para
@@ -23,12 +25,35 @@ import SeccionBase from "../../../../components/SeccionBase.astro";
 import TextoPendiente from "../../../../components/TextoPendiente.astro";
 import MapaUbicacion from "../../../../components/MapaUbicacion.astro";
 
-/** Marcadores de fotografía. Reemplazar por <img> cuando existan las fotos. */
-const FOTOS = [
-  "Fotografía 1 — el espacio donde se realizarán las sesiones.",
-  "Fotografía 2 — la comunidad o el entorno del territorio.",
-  "Fotografía 3 — un momento del acercamiento con la comunidad.",
-] as const;
+interface Foto {
+  /** Ruta pública de la imagen. null = todavía se muestra el marcador punteado. */
+  readonly src: string | null;
+  /** Texto alternativo para quien no puede ver la imagen — describe lo que se ve. */
+  readonly alt: string;
+  /** Pie de foto visible debajo de la imagen. */
+  readonly descripcion: string;
+}
+
+const FOTOS: readonly Foto[] = [
+  {
+    src: "/assets/territorio/fotos-territorio-1.jpeg",
+    // TODO: ajustar el alt y el pie de foto con el lugar y las personas exactas
+    // (¿La Plata, Huila o San Cristóbal, Medellín? ¿quiénes aparecen?).
+    alt: "Dos personas posando en un mirador, con un pueblo entre montañas de fondo.",
+    descripcion: "Vista del territorio donde se desarrolla la práctica.",
+  },
+  {
+    src: "/assets/territorio/fotos-territorio-2.jpeg",
+    // TODO: confirmar de quién es este escritorio y ajustar el pie de foto.
+    alt: "Escritorio con un computador portátil y un monitor externo, junto a una ventana con vista a un pueblo de techos de teja.",
+    descripcion: "El espacio desde donde se acompañan las sesiones virtuales.",
+  },
+  {
+    src: null,
+    alt: "",
+    descripcion: "Fotografía 3 — un momento del acercamiento con la comunidad.",
+  },
+];
 
 /**
  * Territorios donde se desarrolla la práctica. Fuente única de los mapas:
@@ -87,29 +112,36 @@ const UBICACIONES = [
       <h3>Fotografías del territorio</h3>
       <ul class="mt-md grid grid-cols-1 gap-md sm:grid-cols-2 lg:grid-cols-3">
         {
-          FOTOS.map((descripcion) => (
+          FOTOS.map((foto) => (
             <li>
               <figure>
-                {/* TODO: reemplazar este marcador por una etiqueta img con src=/assets/territorio/..., alt descriptivo y class="aspect-video w-full rounded-md object-cover" */}
-                <div
-                  class="flex aspect-video w-full items-center justify-center rounded-md border-2 border-dashed border-line bg-bg"
-                  aria-hidden="true"
-                >
-                  <svg
-                    class="size-12 text-line"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                {foto.src ? (
+                  <img
+                    src={foto.src}
+                    alt={foto.alt}
+                    class="aspect-video w-full rounded-md object-cover"
+                  />
+                ) : (
+                  <div
+                    class="flex aspect-video w-full items-center justify-center rounded-md border-2 border-dashed border-line bg-bg"
+                    aria-hidden="true"
                   >
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <circle cx="9" cy="10" r="1.5" />
-                    <path d="m4 17 5-5 4 4 3-2 4 4" />
-                  </svg>
-                </div>
-                <figcaption class="mt-sm text-sm text-text-muted">{descripcion}</figcaption>
+                    <svg
+                      class="size-12 text-line"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <circle cx="9" cy="10" r="1.5" />
+                      <path d="m4 17 5-5 4 4 3-2 4 4" />
+                    </svg>
+                  </div>
+                )}
+                <figcaption class="mt-sm text-sm text-text-muted">{foto.descripcion}</figcaption>
               </figure>
             </li>
           ))
