@@ -1,0 +1,90 @@
+---
+/* ============================================================
+   HERO — portada del inicio
+   ============================================================
+   Primera pantalla: nombre del proyecto, submarca y una frase
+   corta que explique de qué se trata. El logo acompaña solo en
+   pantallas anchas (en angostas ya está visible en el sidebar).
+
+   El botón secundario sale del sitio de inicio hacia la Entrada 2.
+   La ruta NO se escribe a mano: se toma de ROUTES, en
+   src/Routes/navigation.ts, que es la fuente única de rutas.
+   ============================================================ */
+import TextoPendiente from "../../../components/TextoPendiente.astro";
+import { ROUTES } from "../../../Routes/navigation";
+---
+
+<section class="border-b border-line bg-bg py-xl lg:py-2xl" aria-labelledby="hero-titulo">
+  <div class="mx-auto grid w-full max-w-5xl grid-cols-1 items-center gap-lg px-md lg:grid-cols-[1fr_auto] lg:px-xl">
+    <div>
+      <p class="text-xs font-semibold tracking-widest text-primary-700 uppercase">
+        Proyecto Social de Formación · Práctica en Responsabilidad Social
+      </p>
+
+      <h1 id="hero-titulo" class="mt-sm text-3xl sm:text-4xl">
+        Puente <span class="text-primary">Digital</span>
+      </h1>
+
+      <p
+        class="mt-sm inline-flex items-center gap-xs rounded-sm bg-primary-50 px-sm py-2 text-sm font-semibold text-primary-800"
+      >
+        <svg
+          class="size-5 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M12 3v18" />
+          <path d="M3 12h18" />
+          <path d="m8 8 8 8" />
+        </svg>
+        Programa Sabios Digitales
+      </p>
+
+      <!-- TODO: reemplazar por la frase definitiva del proyecto (1 o 2 líneas). -->
+      <div class="mt-md max-w-3xl">
+        <TextoPendiente etiqueta="Frase de presentación pendiente">
+          Frase corta que resuma el propósito del proyecto: a quién acompañamos,
+          qué les enseñamos y para qué. Máximo dos líneas, en lenguaje cálido y
+          directo.
+        </TextoPendiente>
+      </div>
+
+      <div class="mt-lg flex flex-wrap items-center gap-sm">
+        <a href="#equipo" class="btn-primary inline-flex items-center gap-xs no-underline">
+          Conoce al equipo
+          <svg
+            class="size-5 shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </a>
+
+        <a
+          href={ROUTES.entrada2}
+          class="inline-flex min-h-11 items-center gap-xs rounded-md border-2 border-primary px-sm py-2 font-medium text-primary-700 no-underline transition-colors hover:bg-primary-50"
+        >
+          Nuestro proyecto
+        </a>
+      </div>
+    </div>
+
+    <img
+      src="/assets/logo.png"
+      alt=""
+      aria-hidden="true"
+      class="hidden h-auto w-72 justify-self-end lg:block"
+    />
+  </div>
+</section>

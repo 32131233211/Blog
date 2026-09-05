@@ -1,0 +1,257 @@
+---
+/* ============================================================
+   PUENTE DIGITAL — LAYOUT BASE
+   ============================================================
+   Shell común a TODAS las pantallas del sitio: <head>, link de
+   salto al contenido, menú lateral fijo y contenedor principal.
+
+   Regla del proyecto: ninguna página vuelve a declarar el
+   sidebar ni los links de navegación. El menú se construye
+   siempre desde src/Routes/navigation.ts.
+   ============================================================ */
+import "../styles/main.css";
+import { ClientRouter } from "astro:transitions";
+import { NAVIGATION, isActiveRoute } from "../Routes/navigation";
+
+interface Props {
+  /** Título de la pestaña del navegador. */
+  titulo: string;
+  /** Descripción para buscadores y previsualizaciones. */
+  descripcion?: string;
+}
+
+const {
+  titulo,
+  descripcion = "Capacitaciones de sensibilización tecnológica para adultos mayores.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+/* Clases compartidas por TODOS los ítems del menú (links y desplegable),
+   para que el desplegable no se vea como un elemento de segunda categoría.
+   min-h-11 = 44px, mínimo táctil de accesibilidad del proyecto. */
+const ITEM_BASE =
+  "flex min-h-11 w-full items-center gap-xs rounded-md px-sm py-2 text-base font-medium no-underline transition-colors";
+
+/* El estado activo NO se comunica solo con color: suma el atributo
+   aria-current para que un lector de pantalla lo anuncie. */
+const itemClass = (active: boolean) =>
+  active
+    ? ITEM_BASE + " bg-primary text-white hover:bg-primary-600 hover:text-white"
+    : ITEM_BASE + " text-text hover:bg-primary-50 hover:text-primary-700";
+
+const subItemClass = (active: boolean) =>
+  active
+    ? ITEM_BASE + " text-sm bg-primary-100 text-primary-800 hover:bg-primary-200"
+    : ITEM_BASE + " text-sm text-text-muted hover:bg-primary-50 hover:text-primary-700";
+
+const summaryClass =
+  ITEM_BASE +
+  " text-text hover:bg-primary-50 hover:text-primary-700 cursor-pointer list-none [&::-webkit-details-marker]:hidden";
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={descripcion} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{titulo}</title>
+
+    <!-- ============================================================
+         NAVEGACIÓN SIN RECARGA
+         Intercepta los clics en enlaces internos y reemplaza el
+         <body> en vez de recargar el documento: el CSS no se vuelve
+         a descargar ni a parsear, así que cambiar de pantalla es
+         notablemente más rápido.
+
+         En Astro 7 el componente se llama ClientRouter. El nombre
+         antiguo, ViewTransitions, YA NO EXISTE — si algún tutorial
+         lo menciona, está desactualizado.
+
+         Dos cosas que esto trae de fábrica y que importan por el
+         público adulto mayor:
+         · Anuncia el cambio de pantalla a los lectores de pantalla.
+           Sin ese aviso, quien no ve nunca se entera de que navegó,
+           porque el documento no cambia.
+         · Respeta `prefers-reduced-motion`: si el sistema del usuario
+           pide menos animación, las transiciones se anulan.
+
+         OJO al agregar <script> propios más adelante: con el router
+         activo NO se re-ejecutan en cada navegación. Hay que
+         engancharlos al evento `astro:page-load`.
+         ============================================================ -->
+    <ClientRouter />
+  </head>
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-primary focus:px-sm focus:py-2 focus:text-white"
+    >
+      Saltar al contenido
+    </a>
+
+    <!-- ============================================================
+         MENÚ PRINCIPAL
+         Siempre visible, sin menú hamburguesa EN NINGÚN TAMAÑO.
+         · Desde lg: barra lateral fija de alto completo.
+         · Por debajo de lg: el mismo menú deja de ser fijo y se
+           reordena como bloque superior de ancho completo, con
+           todos los links a la vista en dos columnas. No se oculta
+           ni se colapsa: solo cambia de disposición.
+         El único elemento colapsable es "Sesiones", que se abre por
+         CLIC y arranca CERRADO. Antes arrancaba abierto y, como cada
+         navegación recarga la página entera, se reabría solo en cada
+         clic del menú: molesto. La única excepción es estar dentro de
+         una sesión — ahí se abre solo, porque si no el menú ocultaría
+         justo la pantalla en la que está parado el usuario.
+         ============================================================ -->
+    <aside
+      class="static z-40 flex w-full flex-col border-b border-line bg-bg-alt lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:w-sidebar lg:border-r lg:border-b-0"
+      aria-label="Menú principal"
+    >
+      <!-- Logo -->
+      <a href="/" class="flex shrink-0 items-center justify-center border-b border-line p-md">
+        <img
+          src="/assets/logo.png"
+          alt="Puente Digital — Sabios Digitales"
+          class="h-auto w-40 lg:w-56"
+        />
+      </a>
+
+      <!-- Navegación -->
+      <nav class="flex-1 overflow-y-auto p-sm">
+        <ul class="grid grid-cols-2 gap-1 lg:flex lg:flex-col">
+          {
+            NAVIGATION.map((item) =>
+              item.kind === "link" ? (
+                <li>
+                  <a
+                    href={item.href}
+                    class={itemClass(!item.external && isActiveRoute(item.href, currentPath))}
+                    aria-current={
+                      !item.external && isActiveRoute(item.href, currentPath) ? "page" : undefined
+                    }
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                  >
+                    <svg
+                      class="size-6 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <Fragment set:html={item.icon} />
+                    </svg>
+                    <span>{item.label}</span>
+                    {item.external && (
+                      <>
+                        <svg
+                          class="ml-auto size-5 shrink-0"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M15 3h6v6" />
+                          <path d="M10 14 21 3" />
+                          <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5" />
+                        </svg>
+                        <span class="sr-only">(se abre en una pestaña nueva)</span>
+                      </>
+                    )}
+                  </a>
+                </li>
+              ) : (
+                <li class="col-span-2 lg:col-span-1">
+                  <details
+                    class="group"
+                    open={item.children.some((child) => isActiveRoute(child.href, currentPath))}
+                  >
+                    <summary class={summaryClass}>
+                      <svg
+                        class="size-6 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <Fragment set:html={item.icon} />
+                      </svg>
+                      <span>{item.label}</span>
+                      <svg
+                        class="ml-auto size-5 shrink-0 transition-transform group-open:rotate-180"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </summary>
+
+                    <ul class="mt-1 ml-sm grid grid-cols-2 gap-1 border-l-2 border-line pl-xs lg:flex lg:flex-col">
+                      {item.children.map((child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            class={subItemClass(isActiveRoute(child.href, currentPath))}
+                            aria-current={
+                              isActiveRoute(child.href, currentPath) ? "page" : undefined
+                            }
+                          >
+                            <svg
+                              class="size-5 shrink-0"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <Fragment set:html={child.icon} />
+                            </svg>
+                            <span>{child.label}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </li>
+              )
+            )
+          }
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ============================================================
+         CONTENIDO
+         Desde lg el sidebar es fijo, y el contenido se desplaza
+         exactamente su ancho con el MISMO token (lg:ml-sidebar),
+         nunca un valor suelto. Por debajo de lg el menú va arriba
+         y el contenido ocupa todo el ancho.
+         El padding vertical lo pone cada sección, para permitir
+         fondos de ancho completo alternados.
+         ============================================================ -->
+    <main id="contenido" class="min-h-screen lg:ml-sidebar">
+      <slot />
+    </main>
+  </body>
+</html>

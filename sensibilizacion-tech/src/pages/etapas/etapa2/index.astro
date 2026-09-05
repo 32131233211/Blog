@@ -1,0 +1,44 @@
+---
+/* ============================================================
+   RUTA "/etapas/etapa2" — ENTRADA 2 DEL BLOG
+   ============================================================
+   Planteamiento de la problemática y el contexto, objetivos,
+   justificación y referencias.
+
+   Esta página sólo COMPONE. Su contenido vive en _sections/,
+   que por el prefijo "_" no genera rutas propias.
+
+   El enlace del menú lateral apunta aquí a través de
+   ROUTES.entrada2, en src/Routes/navigation.ts.
+
+   ------------------------------------------------------------
+   TÍTULO DE LA ENTRADA — pendiente
+   ------------------------------------------------------------
+   La consigna pide un título "breve y llamativo", relacionado
+   con el tema y el contexto social del proyecto. Ese título va
+   en el `titulo` del EncabezadoPagina de abajo (es el <h1> de la
+   pantalla) y también en el `titulo` del BaseLayout, que es lo
+   que se ve en la pestaña del navegador y en los buscadores.
+   Mientras tanto queda un título descriptivo de trabajo.
+   ============================================================ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import EncabezadoPagina from "../../../components/EncabezadoPagina.astro";
+import SeccionProblematica from "./_sections/SeccionProblematica.astro";
+import SeccionObjetivos from "./_sections/SeccionObjetivos.astro";
+import SeccionJustificacion from "./_sections/SeccionJustificacion.astro";
+---
+
+<BaseLayout
+  titulo="Entrada 2 — Puente Digital"
+  descripcion="Problemática que aborda el proyecto, contexto del territorio, objetivos y justificación del Proyecto Social de Formación."
+>
+  <EncabezadoPagina
+    etiqueta="Entrada 2"
+    titulo="Planteamiento del proyecto"
+    descripcion="La problemática que identificamos, el territorio donde intervenimos, lo que buscamos lograr y por qué vale la pena."
+  />
+
+  <SeccionProblematica />
+  <SeccionObjetivos />
+  <SeccionJustificacion />
+</BaseLayout>

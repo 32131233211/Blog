@@ -1,0 +1,138 @@
+---
+/* ============================================================
+   ENTRADA 2 (parte 1) — Problemática y contexto
+   ============================================================
+   Cubre estos puntos de la segunda entrada del blog:
+     · Título breve y llamativo de la entrada -> vive en el <h1>
+       de src/pages/etapas/etapa2/index.astro, no aquí.
+     · Problemática a abordar + breve descripción.
+     · Contextualización del territorio o comunidad.
+     · Fotografías y geolocalización del territorio.
+
+   CÓMO COMPLETAR LAS FOTOS:
+   copiar las imágenes a  public/assets/territorio/  y reemplazar
+   cada <figure> pendiente por una imagen real, conservando el
+   <figcaption> (el pie de foto es parte del entregable).
+
+   LOS MAPAS YA ESTÁN PUESTOS:
+   se renderizan con <MapaUbicacion>, un mapa por lugar. Para
+   agregar, quitar o mover un punto se edita la lista UBICACIONES
+   de abajo — nunca se copia un iframe a mano.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+import TextoPendiente from "../../../../components/TextoPendiente.astro";
+import MapaUbicacion from "../../../../components/MapaUbicacion.astro";
+
+/** Marcadores de fotografía. Reemplazar por <img> cuando existan las fotos. */
+const FOTOS = [
+  "Fotografía 1 — el espacio donde se realizarán las sesiones.",
+  "Fotografía 2 — la comunidad o el entorno del territorio.",
+  "Fotografía 3 — un momento del acercamiento con la comunidad.",
+] as const;
+
+/**
+ * Territorios donde se desarrolla la práctica. Fuente única de los mapas:
+ * agregar un lugar aquí lo agrega a la grilla; no hay iframes sueltos.
+ *
+ * La coordenada de La Plata venía en grados-minutos-segundos
+ * (2°23'07.6"N 75°53'59.3"W) y se convirtió a grados decimales, que es
+ * lo que consume la API de mapas.
+ */
+const UBICACIONES = [
+  { titulo: "La Plata, Huila", lat: 2.385444, lng: -75.899806 },
+  { titulo: "San Cristóbal, Medellín, Antioquia", lat: 6.278388, lng: -75.624144 },
+] as const;
+---
+
+<SeccionBase
+  id="problematica"
+  titulo="Planteamiento de la problemática y contexto"
+  descripcion="La necesidad que identificamos y el territorio donde vamos a intervenir."
+  fondo="alt"
+>
+  <div class="flex flex-col gap-lg">
+    <!-- ---------- Problemática ---------- -->
+    <article class="card border border-line">
+      <h3>La problemática que abordamos</h3>
+      <div class="mt-sm flex flex-col gap-sm">
+        <TextoPendiente>
+          Presentación de la problemática elegida en el plan de trabajo y una breve
+          descripción de en qué consiste.
+        </TextoPendiente>
+        <TextoPendiente>
+          Por qué esta problemática es relevante hoy y a quiénes afecta de manera
+          más directa dentro de la comunidad.
+        </TextoPendiente>
+      </div>
+    </article>
+
+    <!-- ---------- Contextualización del territorio ---------- -->
+    <article class="card border border-line">
+      <h3>El territorio y la comunidad</h3>
+      <div class="mt-sm flex flex-col gap-sm">
+        <TextoPendiente>
+          Contextualización del territorio o la comunidad donde se desarrollará la
+          práctica: ubicación, características de la población y condiciones
+          sociales relevantes.
+        </TextoPendiente>
+        <TextoPendiente>
+          Datos o cifras que respalden la descripción del territorio (cada dato debe
+          quedar citado en las referencias, en normas APA).
+        </TextoPendiente>
+      </div>
+    </article>
+
+    <!-- ---------- Fotografías ---------- -->
+    <article>
+      <h3>Fotografías del territorio</h3>
+      <ul class="mt-md grid grid-cols-1 gap-md sm:grid-cols-2 lg:grid-cols-3">
+        {
+          FOTOS.map((descripcion) => (
+            <li>
+              <figure>
+                {/* TODO: reemplazar este marcador por una etiqueta img con src=/assets/territorio/..., alt descriptivo y class="aspect-video w-full rounded-md object-cover" */}
+                <div
+                  class="flex aspect-video w-full items-center justify-center rounded-md border-2 border-dashed border-line bg-bg"
+                  aria-hidden="true"
+                >
+                  <svg
+                    class="size-12 text-line"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <circle cx="9" cy="10" r="1.5" />
+                    <path d="m4 17 5-5 4 4 3-2 4 4" />
+                  </svg>
+                </div>
+                <figcaption class="mt-sm text-sm text-text-muted">{descripcion}</figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+
+    <!-- ---------- Geolocalización ---------- -->
+    <article>
+      <h3>Geolocalización</h3>
+      <p class="mt-xs text-sm text-text-muted">
+        Ubicación exacta de los territorios donde se desarrolla la práctica.
+      </p>
+
+      <ul class="mt-md grid grid-cols-1 gap-md lg:grid-cols-2">
+        {
+          UBICACIONES.map((ubicacion) => (
+            <li>
+              <MapaUbicacion lat={ubicacion.lat} lng={ubicacion.lng} titulo={ubicacion.titulo} />
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+</SeccionBase>

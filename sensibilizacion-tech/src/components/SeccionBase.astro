@@ -1,0 +1,61 @@
+---
+/* ============================================================
+   SECCIÓN BASE — envoltorio de todas las secciones del sitio
+   ============================================================
+   Unifica ancho, padding vertical, fondo alterno y el bloque de
+   encabezado (etiqueta + título + regla + descripción). Cualquier
+   sección de cualquier pantalla debe usarlo, para que ninguna
+   invente su propio ritmo vertical ni su propia jerarquía.
+
+   El título es OPCIONAL: cuando una pantalla ya declara su tema
+   en el <h1> del encabezado de página, la sección se queda sólo
+   con el contenedor (ancho, padding y fondo) y no repite un <h2>
+   que diría lo mismo.
+
+   Los valores salen SIEMPRE de los tokens de main.css
+   (py-lg, px-md, gap-md, bg-bg-alt, ...). Nada hardcodeado.
+   ============================================================ */
+interface Props {
+  /** id del <section>; también ancla el título para aria-labelledby. */
+  id: string;
+  /** Etiqueta pequeña sobre el título (ej. "Entrada 1"). */
+  etiqueta?: string;
+  /** Título de la sección. Si se omite, no se renderiza encabezado. */
+  titulo?: string;
+  /** Bajada opcional bajo el título. */
+  descripcion?: string;
+  /** Fondo de la sección. Se alternan para separar bloques sin líneas duras. */
+  fondo?: "base" | "alt";
+}
+
+const { id, etiqueta, titulo, descripcion, fondo = "base" } = Astro.props;
+
+const fondoClass = fondo === "alt" ? "bg-bg-alt" : "bg-bg";
+
+/* Una sección sin título no puede apuntar aria-labelledby a un
+   encabezado que no existe: en ese caso simplemente no se etiqueta. */
+const etiquetadoAccesible = titulo ? `${id}-titulo` : undefined;
+---
+
+<section id={id} aria-labelledby={etiquetadoAccesible} class={`${fondoClass} py-lg lg:py-xl`}>
+  <div class="mx-auto w-full max-w-5xl px-md lg:px-xl">
+    {
+      titulo && (
+        <header class="mb-lg max-w-3xl">
+          {etiqueta && (
+            <p class="text-xs font-semibold tracking-widest text-primary-700 uppercase">
+              {etiqueta}
+            </p>
+          )}
+          <h2 id={`${id}-titulo`} class="mt-xs">
+            {titulo}
+          </h2>
+          <div class="mt-sm h-1 w-16 rounded-sm bg-secondary" aria-hidden="true" />
+          {descripcion && <p class="mt-md text-text-muted">{descripcion}</p>}
+        </header>
+      )
+    }
+
+    <slot />
+  </div>
+</section>

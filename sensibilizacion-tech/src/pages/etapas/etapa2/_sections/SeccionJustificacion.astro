@@ -1,0 +1,91 @@
+---
+/* ============================================================
+   ENTRADA 2 (parte 3) — Justificación y referencias
+   ============================================================
+   · Justificación: argumentos claros y contundentes sobre la
+     problemática abordada, el carácter académico, científico y
+     social del proyecto, y los aportes a la comunidad.
+   · Referencias: fuentes utilizadas, en normas APA.
+
+   CÓMO COMPLETAR LAS REFERENCIAS: escribir cada fuente completa
+   en el arreglo REFERENCIAS, ya formateada en APA. Si la fuente
+   tiene enlace, ponerlo en `url` y se renderiza como link.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+import TextoPendiente from "../../../../components/TextoPendiente.astro";
+
+interface Referencia {
+  /** Cita completa en normas APA. */
+  readonly cita: string;
+  /** URL o DOI de la fuente, si aplica. */
+  readonly url?: string;
+  readonly pendiente?: boolean;
+}
+
+const REFERENCIAS: readonly Referencia[] = [
+  { cita: "Referencia 1 en normas APA (autor, año, título, fuente).", pendiente: true },
+  { cita: "Referencia 2 en normas APA (autor, año, título, fuente).", pendiente: true },
+  { cita: "Referencia 3 en normas APA (autor, año, título, fuente).", pendiente: true },
+];
+---
+
+<SeccionBase
+  id="justificacion"
+  titulo="Justificación"
+  descripcion="Por qué este proyecto vale la pena, en lo académico, lo científico y lo social."
+  fondo="alt"
+>
+  <div class="flex flex-col gap-lg">
+    <!-- ---------- Justificación ---------- -->
+    <article class="card border border-line">
+      <div class="flex flex-col gap-sm">
+        <TextoPendiente>
+          Argumentación de la problemática abordada: por qué exige una intervención
+          y qué pasa si no se atiende.
+        </TextoPendiente>
+        <TextoPendiente>
+          Justificación desde el carácter académico y científico: qué conocimientos
+          del programa se ponen en juego y en qué evidencia se apoya la propuesta.
+        </TextoPendiente>
+        <TextoPendiente>
+          Aportes concretos que el proyecto genera en la comunidad específica donde
+          se desarrolla.
+        </TextoPendiente>
+      </div>
+    </article>
+
+    <!-- ---------- Referencias ---------- -->
+    <article>
+      <h3>Referencias</h3>
+      <p class="mt-xs text-sm text-text-muted">Fuentes consultadas, en normas APA.</p>
+
+      <ul class="mt-md flex flex-col gap-sm">
+        {
+          REFERENCIAS.map((referencia) => (
+            <li class="border-l-4 border-line pl-sm">
+              {referencia.pendiente ? (
+                <p class="text-sm text-text-muted italic">
+                  <span class="sr-only">Referencia pendiente: </span>
+                  {referencia.cita}
+                </p>
+              ) : (
+                <p class="text-sm">
+                  {referencia.cita}
+                  {referencia.url && (
+                    <>
+                      {" "}
+                      <a href={referencia.url} target="_blank" rel="noopener noreferrer">
+                        {referencia.url}
+                        <span class="sr-only"> (se abre en una pestaña nueva)</span>
+                      </a>
+                    </>
+                  )}
+                </p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+</SeccionBase>

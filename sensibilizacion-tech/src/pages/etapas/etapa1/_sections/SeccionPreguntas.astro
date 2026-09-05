@@ -1,0 +1,77 @@
+---
+/* ============================================================
+   ENTRADA 1 — Presentación del equipo y la práctica
+   ============================================================
+   Responde las cuatro preguntas exigidas para la primera
+   entrada del blog:
+     1. ¿Quiénes son ustedes?
+     2. ¿Con qué comunidad o grupo social van a trabajar?
+     3. ¿Dónde se encuentra ubicada esa comunidad o grupo social?
+     4. ¿En qué modalidad van a hacer su práctica?
+
+   CÓMO COMPLETAR: en el arreglo PREGUNTAS, reemplazar el valor
+   de `guia` por el texto definitivo y borrar `pendiente: true`.
+   La tarjeta deja de mostrarse como pendiente automáticamente.
+
+   Esta sección NO lleva título propio: el tema de la pantalla ya
+   lo enuncia el <h1> de src/pages/etapas/etapa1/index.astro.
+   Por eso cada pregunta es un <h2>: cuelga directamente de ese
+   <h1> y la jerarquía no debe saltarse un nivel. El tamaño visual
+   se controla aparte, con el token `text-lg`.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+import TextoPendiente from "../../../../components/TextoPendiente.astro";
+
+interface Pregunta {
+  readonly pregunta: string;
+  /** Texto definitivo, o la guía de qué debe responderse mientras esté pendiente. */
+  readonly guia: string;
+  readonly pendiente?: boolean;
+}
+
+const PREGUNTAS: readonly Pregunta[] = [
+  {
+    pregunta: "¿Quiénes somos?",
+    guia:
+      "Presentación del equipo: nombres, programas académicos, universidad y qué nos motivó a elegir esta problemática.",
+    pendiente: true,
+  },
+  {
+    pregunta: "¿Con qué comunidad o grupo social vamos a trabajar?",
+    guia:
+      "Descripción del grupo poblacional con el que se desarrolla la práctica y por qué fue seleccionado.",
+    pendiente: true,
+  },
+  {
+    pregunta: "¿Dónde se encuentra ubicada esa comunidad?",
+    guia:
+      "Ubicación concreta: ciudad, comuna o barrio, y el espacio físico o institución donde se realizarán las sesiones.",
+    pendiente: true,
+  },
+  {
+    pregunta: "¿En qué modalidad haremos la práctica?",
+    guia:
+      "Modalidad elegida (presencial, virtual o híbrida) y la razón por la que se ajusta mejor a esta comunidad.",
+    pendiente: true,
+  },
+];
+---
+
+<SeccionBase id="presentacion">
+  <ul class="grid grid-cols-1 gap-md md:grid-cols-2">
+    {
+      PREGUNTAS.map((item) => (
+        <li class="card flex flex-col border border-line">
+          <h2 class="text-lg">{item.pregunta}</h2>
+          <div class="mt-sm">
+            {item.pendiente ? (
+              <TextoPendiente>{item.guia}</TextoPendiente>
+            ) : (
+              <p class="text-text-muted">{item.guia}</p>
+            )}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</SeccionBase>

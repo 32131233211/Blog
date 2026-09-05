@@ -1,0 +1,42 @@
+---
+/* ============================================================
+   ENCABEZADO DE PÁGINA — el <h1> de las pantallas internas
+   ============================================================
+   Toda pantalla que no sea el inicio empieza con este bloque.
+
+   POR QUÉ EXISTE: una página debe tener UN <h1>, y uno solo. El
+   inicio lo pone en su hero; las demás pantallas lo ponen aquí.
+   Sin él, la pantalla arranca en <h2> y tanto los lectores de
+   pantalla como los buscadores leen un documento sin tema: la
+   jerarquía queda coja y el usuario que navega por encabezados
+   no sabe dónde está parado.
+
+   Las secciones que vienen debajo usan <h2> (vía SeccionBase),
+   y dentro de ellas los bloques usan <h3>. Nunca se salta un
+   nivel ni se elige un encabezado por su tamaño: el tamaño lo
+   dan los tokens, el nivel lo da la jerarquía del contenido.
+   ============================================================ */
+interface Props {
+  /** Etiqueta pequeña sobre el título (ej. "Entrada 1"). */
+  etiqueta?: string;
+  /** Título de la pantalla. Es el <h1> del documento. */
+  titulo: string;
+  /** Bajada opcional que resume de qué va la pantalla. */
+  descripcion?: string;
+}
+
+const { etiqueta, titulo, descripcion } = Astro.props;
+---
+
+<header class="border-b border-line bg-bg py-xl lg:py-2xl">
+  <div class="mx-auto w-full max-w-5xl px-md lg:px-xl">
+    {
+      etiqueta && (
+        <p class="text-xs font-semibold tracking-widest text-primary-700 uppercase">{etiqueta}</p>
+      )
+    }
+    <h1 class="mt-sm text-3xl sm:text-4xl">{titulo}</h1>
+    <div class="mt-md h-1 w-16 rounded-sm bg-secondary" aria-hidden="true"></div>
+    {descripcion && <p class="mt-md max-w-3xl text-lg text-text-muted">{descripcion}</p>}
+  </div>
+</header>

@@ -1,0 +1,24 @@
+---
+/* ============================================================
+   TEXTO PENDIENTE — marcador visual de contenido por redactar
+   ============================================================
+   Todo párrafo del home que todavía no tiene texto definitivo
+   se envuelve aquí. Deja el espacio maquetado, señala a simple
+   vista qué falta y se elimina de un solo lugar cuando el texto
+   real esté listo: se reemplaza <TextoPendiente> por <p>.
+
+   No usa color como único canal de información (borde punteado
+   + texto de apoyo), según la regla de accesibilidad del proyecto.
+   ============================================================ */
+interface Props {
+  /** Texto que anuncia el lector de pantalla antes del contenido. */
+  etiqueta?: string;
+}
+
+const { etiqueta = "Contenido pendiente de redacción" } = Astro.props;
+---
+
+<p class="border-l-4 border-dashed border-line pl-sm text-text-muted">
+  <span class="sr-only">{etiqueta}: </span>
+  <slot />
+</p>

@@ -1,0 +1,102 @@
+---
+/* ============================================================
+   NUESTRO EQUIPO
+   ============================================================
+   Cuatro tarjetas: foto, nombre y carrera de cada integrante.
+
+   CÓMO COMPLETAR:
+   1. Copiar la foto de cada integrante a  public/assets/equipo/
+      (recomendado: cuadrada, mínimo 400x400 px, formato .jpg o .webp).
+   2. En el arreglo EQUIPO de abajo, poner esa ruta en `foto`
+      (ej. "/assets/equipo/marlon.jpg") y escribir la `carrera`.
+   Mientras `foto` sea null, la tarjeta muestra las iniciales del
+   integrante dentro de un círculo, sin romper el diseño.
+   ============================================================ */
+import SeccionBase from "../../../components/SeccionBase.astro";
+
+interface Integrante {
+  readonly nombre: string;
+  /** Programa académico que cursa. Pendiente de confirmar. */
+  readonly carrera: string | null;
+  /** Ruta pública de la foto. null = se muestran las iniciales. */
+  readonly foto: string | null;
+  /** Sesión de la capacitación que lidera. */
+  readonly sesion: string;
+}
+
+const EQUIPO: readonly Integrante[] = [
+  { nombre: "Marlon", carrera: null, foto: null, sesion: "Sesión 1" },
+  { nombre: "Brando", carrera: "Ingeniería de Software", foto: null, sesion: "Sesión 2" },
+  { nombre: "Sebastián", carrera: "Ingeniería de Software", foto: null, sesion: "Sesión 3" },
+  { nombre: "Yeimi", carrera: null, foto: null, sesion: "Sesión 4" },
+];
+
+/** Iniciales para el marcador de foto (máximo 2 letras). */
+const iniciales = (nombre: string) =>
+  nombre
+    .split(" ")
+    .slice(0, 2)
+    .map((parte) => parte.charAt(0))
+    .join("")
+    .toUpperCase();
+---
+
+<SeccionBase
+  id="equipo"
+  etiqueta="Quiénes lo hacemos"
+  titulo="Nuestro equipo"
+  descripcion="Estudiantes a cargo del diseño y la ejecución de las capacitaciones."
+  fondo="alt"
+>
+  <ul class="grid grid-cols-1 gap-md sm:grid-cols-2 xl:grid-cols-4">
+    {
+      EQUIPO.map((integrante) => (
+        <li class="card flex flex-col items-center border border-line text-center">
+          {integrante.foto ? (
+            <img
+              src={integrante.foto}
+              alt={`Foto de ${integrante.nombre}`}
+              class="size-32 rounded-full border-2 border-primary-100 object-cover"
+            />
+          ) : (
+            <span
+              class="flex size-32 items-center justify-center rounded-full border-2 border-dashed border-primary-200 bg-primary-50 text-xl font-semibold text-primary-700"
+              aria-hidden="true"
+            >
+              {iniciales(integrante.nombre)}
+            </span>
+          )}
+
+          <h3 class="mt-md text-lg">{integrante.nombre}</h3>
+
+          {integrante.carrera ? (
+            <p class="mt-xs text-sm text-text-muted">{integrante.carrera}</p>
+          ) : (
+            <p class="mt-xs text-sm text-text-muted italic">Carrera por definir</p>
+          )}
+
+          <p class="mt-sm inline-flex items-center gap-xs rounded-sm bg-secondary-50 px-sm py-2 text-xs font-semibold text-secondary-700">
+            <svg
+              class="size-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M8 6h10" />
+              <path d="M8 12h10" />
+              <path d="M8 18h10" />
+              <path d="M4 6h.01" />
+              <path d="M4 12h.01" />
+              <path d="M4 18h.01" />
+            </svg>
+            A cargo de la {integrante.sesion}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</SeccionBase>

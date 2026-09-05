@@ -1,0 +1,30 @@
+---
+/* ============================================================
+   RUTA "/etapas/etapa1" — ENTRADA 1 DEL BLOG
+   ============================================================
+   Presentación del equipo y de la práctica. Responde las cuatro
+   preguntas exigidas para la primera entrada del blog.
+
+   Esta página sólo COMPONE. Su contenido vive en _sections/,
+   que por el prefijo "_" no genera rutas propias.
+
+   El enlace del menú lateral apunta aquí a través de
+   ROUTES.entrada1, en src/Routes/navigation.ts.
+   ============================================================ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import EncabezadoPagina from "../../../components/EncabezadoPagina.astro";
+import SeccionPreguntas from "./_sections/SeccionPreguntas.astro";
+---
+
+<BaseLayout
+  titulo="Entrada 1 — Puente Digital"
+  descripcion="Quiénes somos, con qué comunidad trabajamos, dónde está ubicada y en qué modalidad desarrollamos la práctica en responsabilidad social."
+>
+  <EncabezadoPagina
+    etiqueta="Entrada 1"
+    titulo="Nuestra práctica en responsabilidad social"
+    descripcion="Quiénes somos, con quién trabajamos, dónde y de qué manera."
+  />
+
+  <SeccionPreguntas />
+</BaseLayout>

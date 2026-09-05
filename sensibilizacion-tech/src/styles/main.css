@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* ============================================================
+   PUENTE DIGITAL — SISTEMA DE DISEÑO CENTRALIZADO
+   ============================================================
+   Esta es la ÚNICA fuente de verdad para colores, tipografía,
+   espaciado y radios de borde en todo el sitio.
+
+   REGLA DEL PROYECTO:
+   Si en el camino se necesita un color, tamaño, fuente o
+   espaciado nuevo que no exista aquí abajo, se define PRIMERO
+   en este archivo (dentro de @theme) y luego se usa en las
+   pantallas o componentes. Nunca al revés. No se debe escribir
+   un color hex, un px suelto ni una fuente directamente en un
+   componente — siempre a través de las utilidades de Tailwind
+   generadas por este archivo (bg-primary, text-lg, p-md, etc.).
+   ============================================================ */
+
+@theme {
+  /* ------------------------------------------------------------
+     COLORES
+     Rampas generadas a partir de los 3 colores extraídos
+     directamente del logo oficial aprobado (ver claude.md).
+     Cada rampa va de 50 (más claro) a 900 (más oscuro).
+     El alias sin número (ej. --color-primary) apunta al tono
+     500, que es el tono "base" de cada color.
+     ------------------------------------------------------------ */
+
+  /* Primario — Teal (tecnología, confianza, elementos principales) */
+  --color-primary-50:  #F0F9F8;
+  --color-primary-100: #DDF0EE;
+  --color-primary-200: #B1DDD8;
+  --color-primary-300: #80C8C0;
+  --color-primary-400: #45AFA2;
+  --color-primary-500: #0A9685;
+  --color-primary-600: #098172;
+  --color-primary-700: #076C60;
+  --color-primary-800: #06574D;
+  --color-primary-900: #04423B;
+  --color-primary: var(--color-primary-500);
+
+  /* Secundario — Coral (calidez humana, acentos, CTAs secundarios) */
+  --color-secondary-50:  #FEF5F3;
+  --color-secondary-100: #FCE9E3;
+  --color-secondary-200: #F8CCC0;
+  --color-secondary-300: #F4AC98;
+  --color-secondary-400: #EF8569;
+  --color-secondary-500: #EA5F39;
+  --color-secondary-600: #C95231;
+  --color-secondary-700: #A84429;
+  --color-secondary-800: #883721;
+  --color-secondary-900: #672A19;
+  --color-secondary: var(--color-secondary-500);
+
+  /* Acento — Dorado ("momento de conexión"). Uso puntual, nunca como
+     color de fondo grande ni de texto de cuerpo. */
+  --color-accent-50:  #FEF9F1;
+  --color-accent-100: #FCF0DE;
+  --color-accent-200: #F7DDB3;
+  --color-accent-300: #F3C783;
+  --color-accent-400: #EDAE49;
+  --color-accent-500: #E79410;
+  --color-accent-600: #C77F0E;
+  --color-accent-700: #A66B0C;
+  --color-accent: var(--color-accent-500);
+
+  /* Neutros — de la identidad de marca, no del gris genérico de Tailwind */
+  --color-text:       #282828; /* texto de cuerpo y títulos */
+  --color-text-muted: #5F5E5A; /* texto secundario/apoyo (más oscuro que --color-line para que siga siendo legible) */
+  --color-line:       #C7C7C7; /* bordes sutiles, divisores, texto terciario */
+  --color-bg:         #FFFFFF; /* fondo base de la página */
+  --color-bg-alt:     #F7F6F4; /* fondo alterno para alternar secciones sin usar blanco puro */
+
+  /* Estados semánticos — SIEMPRE derivados de la paleta de marca.
+     No introducir verdes/rojos genéricos de librería. */
+  --color-success: #4C8C5B;
+  --color-warning: var(--color-accent-500);
+  --color-error:   var(--color-secondary-700);
+
+  /* ------------------------------------------------------------
+     TIPOGRAFÍA
+     ------------------------------------------------------------ */
+  --font-sans:    "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-heading: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* Si se importa Inter (Google Fonts o self-hosted), heredan ambas.
+     Si no se importa nada, cae en system-ui sin romper el diseño. */
+
+  /* Escala de tamaños de texto — reemplaza la escala default de Tailwind.
+     Base subida a 20px (en vez de 16px) por la regla de accesibilidad
+     del proyecto (público adulto mayor). NUNCA usar texto por debajo
+     de --text-xs, y --text-xs solo para metadatos/etiquetas, jamás
+     para texto de lectura. */
+  --text-xs:              1rem;      /* 16px — mínimo absoluto, solo etiquetas/metadatos */
+  --text-xs--line-height:   1.5rem;
+
+  --text-sm:              1.125rem;  /* 18px — texto secundario */
+  --text-sm--line-height:   1.75rem;
+
+  --text-base:            1.25rem;   /* 20px — cuerpo de texto estándar */
+  --text-base--line-height: 2rem;
+
+  --text-lg:               1.5rem;   /* 24px — texto destacado, subtítulos, h4 */
+  --text-lg--line-height:   2.25rem;
+
+  --text-xl:               1.875rem; /* 30px — h3 */
+  --text-xl--line-height:   2.375rem;
+
+  --text-2xl:              2.25rem;  /* 36px — h2 */
+  --text-2xl--line-height:  2.75rem;
+
+  --text-3xl:              3rem;     /* 48px — h1 */
+  --text-3xl--line-height:  3.5rem;
+
+  --text-4xl:              3.75rem;  /* 60px — título hero de portada */
+  --text-4xl--line-height:  4.25rem;
+
+  /* ------------------------------------------------------------
+     ESPACIADO (márgenes / padding / gaps)
+     La escala numérica de Tailwind (p-1, p-2, p-4...) se conserva
+     tal cual para casos puntuales. Además se agregan tokens con
+     nombre para los patrones más comunes del sitio, así todos usan
+     el mismo valor para "el padding de una tarjeta", etc.
+     ------------------------------------------------------------ */
+  --spacing-xs:  0.5rem;  /* 8px  — separación mínima entre elementos relacionados (ej. ícono y texto) */
+  --spacing-sm:  1rem;    /* 16px — padding interno de botones, badges, inputs */
+  --spacing-md:  1.5rem;  /* 24px — padding interno de tarjetas, gap de grillas */
+  --spacing-lg:  2.5rem;  /* 40px — separación entre bloques dentro de una sección */
+  --spacing-xl:  4rem;    /* 64px — padding vertical de una sección completa */
+  --spacing-2xl: 6rem;    /* 96px — separación entre secciones grandes (home, landing) */
+
+  /* Ancho fijo del menú lateral de escritorio. Vive aquí para que el
+     sidebar (w-sidebar) y el desplazamiento del contenido (ml-sidebar)
+     compartan SIEMPRE el mismo valor y no se desincronicen. */
+  --spacing-sidebar: 20rem; /* 320px */
+
+  /* ------------------------------------------------------------
+     RADIOS DE BORDE
+     Se redefinen los radios base de Tailwind (rounded-sm/md/lg)
+     para que coincidan con el estilo del logo (esquinas suaves,
+     no muy redondeadas, no cuadradas).
+     ------------------------------------------------------------ */
+  --radius-sm: 0.375rem; /* 6px  — inputs, botones pequeños, badges */
+  --radius-md: 0.75rem;  /* 12px — tarjetas, contenedores */
+  --radius-lg: 1.25rem;  /* 20px — modales, contenedores grandes */
+
+  /* ------------------------------------------------------------
+     SOMBRAS
+     Diseño plano: una sola sombra suave para elevar tarjetas.
+     No usar sombras fuertes, glow ni degradados en ningún componente.
+     ------------------------------------------------------------ */
+  --shadow-card: 0 1px 3px rgba(40, 40, 40, 0.08), 0 1px 2px rgba(40, 40, 40, 0.06);
+}
+
+/* ============================================================
+   ESTILOS BASE
+   Valores por defecto del HTML plano, para que la accesibilidad
+   y la marca apliquen aunque un componente no use ninguna clase.
+   ============================================================ */
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  h1 { font-size: var(--text-3xl); line-height: var(--text-3xl--line-height); }
+  h2 { font-size: var(--text-2xl); line-height: var(--text-2xl--line-height); }
+  h3 { font-size: var(--text-xl);  line-height: var(--text-xl--line-height); }
+  h4 { font-size: var(--text-lg);  line-height: var(--text-lg--line-height); }
+
+  a {
+    color: var(--color-primary);
+    text-underline-offset: 2px;
+  }
+  a:hover { color: var(--color-primary-600); }
+
+  /* Accesibilidad: foco visible siempre, para navegación por teclado */
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   COMPONENTES DE EJEMPLO (opcional)
+   Muestran el patrón correcto: componer utilidades de Tailwind
+   a partir de los tokens de arriba, nunca valores sueltos.
+   ============================================================ */
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white font-medium px-sm py-xs rounded-md;
+    @apply hover:bg-primary-600 transition-colors;
+    min-height: 44px; /* mínimo táctil de accesibilidad */
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white font-medium px-sm py-xs rounded-md;
+    @apply hover:bg-secondary-600 transition-colors;
+    min-height: 44px;
+  }
+
+  .card {
+    @apply bg-bg rounded-md p-md;
+    box-shadow: var(--shadow-card);
+  }
+}

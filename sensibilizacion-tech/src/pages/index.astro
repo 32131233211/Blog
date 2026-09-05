@@ -1,0 +1,27 @@
+---
+/* ============================================================
+   RUTA "/" — PANTALLA DE INICIO
+   ============================================================
+   El inicio es SÓLO presentación del proyecto y el equipo.
+   El contenido de las entradas del blog vive en su propia
+   pantalla, no aquí:
+     · Entrada 1 -> src/pages/etapas/etapa1/
+     · Entrada 2 -> src/pages/etapas/etapa2/
+
+   Esta página sólo COMPONE. Sus secciones viven en
+   src/pages/inicio/_sections/. Los archivos y carpetas que
+   empiezan por "_" no generan rutas en Astro: son componentes,
+   no pantallas.
+   ============================================================ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroInicio from "./inicio/_sections/HeroInicio.astro";
+import SeccionEquipo from "./inicio/_sections/SeccionEquipo.astro";
+---
+
+<BaseLayout
+  titulo="Puente Digital — Sabios Digitales"
+  descripcion="Proyecto Social de Formación que acerca la tecnología a los adultos mayores mediante capacitaciones de sensibilización tecnológica."
+>
+  <HeroInicio />
+  <SeccionEquipo />
+</BaseLayout>
