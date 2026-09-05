@@ -13,6 +13,13 @@
    de `guia` por el texto definitivo y borrar `pendiente: true`.
    La tarjeta deja de mostrarse como pendiente automáticamente.
 
+   La primera pregunta ("¿Quiénes somos?") no usa `guia`: renderiza
+   la lista INTEGRANTES de abajo, uno por integrante, y después un
+   párrafo fijo con la motivación del equipo. Si algún dato de un
+   integrante cambia (carrera, ciudad), se edita en INTEGRANTES — es
+   la misma fuente que después puede alimentar la tarjeta de contacto
+   si se necesita en otra pantalla.
+
    Esta sección NO lleva título propio: el tema de la pantalla ya
    lo enuncia el <h1> de src/pages/etapas/etapa1/index.astro.
    Por eso cada pregunta es un <h2>: cuelga directamente de ese
@@ -22,52 +29,103 @@
 import SeccionBase from "../../../../components/SeccionBase.astro";
 import TextoPendiente from "../../../../components/TextoPendiente.astro";
 
+interface Integrante {
+  readonly nombre: string;
+  readonly carrera: string;
+  readonly ciudad: string;
+}
+
+/* Universidad tomada del dominio del correo institucional del equipo
+   (@uniminuto.edu.co, visible en el enlace de OneDrive de navigation.ts).
+   Si el nombre completo oficial de la sede o modalidad difiere, ajustar aquí. */
+const UNIVERSIDAD = "Corporación Universitaria Minuto de Dios (UNIMINUTO)";
+
+const INTEGRANTES: readonly Integrante[] = [
+  { nombre: "Yeimy Liliana Calle Calvo", carrera: "Ingeniería de Sistemas", ciudad: "Pereira, Risaralda" },
+  { nombre: "Brando García Ariza", carrera: "Ingeniería de Software", ciudad: "La Plata, Huila" },
+  { nombre: "Marlon Andrés Muñoz Romero", carrera: "Ingeniería de Software", ciudad: "Cartagena, Bolívar" },
+  { nombre: "Sebastián Corrales Sepúlveda", carrera: "Ingeniería de Software", ciudad: "Medellín, Antioquia" },
+];
+
 interface Pregunta {
   readonly pregunta: string;
-  /** Texto definitivo, o la guía de qué debe responderse mientras esté pendiente. */
-  readonly guia: string;
+  /**
+   * Mientras `pendiente` es true: la guía de qué debe responderse, como un solo texto.
+   * Cuando ya está definido: el texto final, uno o varios párrafos.
+   */
+  readonly guia: string | readonly string[];
   readonly pendiente?: boolean;
 }
 
 const PREGUNTAS: readonly Pregunta[] = [
   {
-    pregunta: "¿Quiénes somos?",
-    guia:
-      "Presentación del equipo: nombres, programas académicos, universidad y qué nos motivó a elegir esta problemática.",
-    pendiente: true,
-  },
-  {
     pregunta: "¿Con qué comunidad o grupo social vamos a trabajar?",
-    guia:
-      "Descripción del grupo poblacional con el que se desarrolla la práctica y por qué fue seleccionado.",
-    pendiente: true,
+    guia: [
+      "Vamos a trabajar con cuatro personas adultas de Antioquia y Huila y son los padres de dos integrantes del equipo.",
+      "Aunque manejan lo básico de un celular, como hacer una llamada o escribir un mensaje, la tecnología no es parte central de su día a día, y eso los deja expuestos a riesgos que hoy son comunes: enlaces falsos, contraseñas débiles, fraudes por WhatsApp. Elegimos acompañarlos porque un manejo más seguro y autónomo de su dispositivo no es un lujo: es la diferencia entre depender de alguien más para resolver un trámite, y poder hacerlo por sí mismos, con menos riesgo de caer en una estafa.",
+    ],
   },
   {
     pregunta: "¿Dónde se encuentra ubicada esa comunidad?",
     guia:
-      "Ubicación concreta: ciudad, comuna o barrio, y el espacio físico o institución donde se realizarán las sesiones.",
-    pendiente: true,
+      "Los papás de Brando viven en La Plata, Huila, y los de Sebastián en San Cristóbal, un corregimiento de Medellín, Antioquia. Las sesiones se hacen de forma virtual, aunque Brando y Sebastián van a estar presentes en persona acompañando a sus papás en cada una.",
   },
   {
     pregunta: "¿En qué modalidad haremos la práctica?",
     guia:
-      "Modalidad elegida (presencial, virtual o híbrida) y la razón por la que se ajusta mejor a esta comunidad.",
-    pendiente: true,
+      "Los integrantes del equipo están ubicados en diferentes departamentos: Risaralda, Huila, Bolívar y Antioquia por lo que no hay forma de reunirnos presencial entonces la modalidad virtual es la única opción que tenemos. Además, los papás de Brando y Sebastián tienen computador en casa, entonces la modalidad virtual se ajusta perfectamente a lo que se tiene disponible.",
   },
 ];
 ---
 
 <SeccionBase id="presentacion">
   <ul class="grid grid-cols-1 gap-md md:grid-cols-2">
+    {/* ---------- ¿Quiénes somos? — primera y con datos ya definidos ---------- */}
+    <li class="card flex flex-col border border-line md:col-span-2">
+      <h2 class="text-lg">¿Quiénes somos?</h2>
+      <p class="mt-xs text-sm text-text-muted">
+        Estudiantes de {UNIVERSIDAD}, autores de este Proyecto Social de Formación.
+      </p>
+
+      <ul class="mt-md grid grid-cols-1 gap-sm sm:grid-cols-2">
+        {
+          INTEGRANTES.map((integrante) => (
+            <li class="rounded-md bg-bg-alt p-sm">
+              <p class="font-medium text-text">{integrante.nombre}</p>
+              <p class="mt-xs text-sm text-text-muted">{integrante.carrera}</p>
+              <p class="text-sm text-text-muted">{integrante.ciudad}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-md text-text-muted">
+        Lo que nos motivó fue ver de cerca lo que viven nuestros propios padres. Muchas
+        veces dependen de nosotros para hacer cosas básicas, como escribir un mensaje o
+        hacer una transferencia, y por no conocer lo mínimo de seguridad, terminan
+        expuestos a ciberataques.
+      </p>
+    </li>
+
     {
-      PREGUNTAS.map((item) => (
-        <li class="card flex flex-col border border-line">
+      /* La última pregunta queda sola en su fila (3 preguntas en una grilla de 2
+         columnas): se le da el ancho completo para no dejar un hueco vacío al lado. */
+      PREGUNTAS.map((item, indice) => (
+        <li
+          class={`card flex flex-col border border-line ${
+            indice === PREGUNTAS.length - 1 ? "md:col-span-2" : ""
+          }`}
+        >
           <h2 class="text-lg">{item.pregunta}</h2>
           <div class="mt-sm">
             {item.pendiente ? (
-              <TextoPendiente>{item.guia}</TextoPendiente>
+              <TextoPendiente>{item.guia as string}</TextoPendiente>
             ) : (
-              <p class="text-text-muted">{item.guia}</p>
+              <div class="flex flex-col gap-sm">
+                {(Array.isArray(item.guia) ? item.guia : [item.guia]).map((parrafo) => (
+                  <p class="text-text-muted">{parrafo}</p>
+                ))}
+              </div>
             )}
           </div>
         </li>
