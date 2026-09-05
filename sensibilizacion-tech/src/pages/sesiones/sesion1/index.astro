@@ -1,0 +1,22 @@
+---
+/* ============================================================
+   RUTA "/sesiones/sesion1" — PENDIENTE DE CONTENIDO
+   ============================================================
+   La ruta ya está enlazada desde el menú (ROUTES.sesion1), pero
+   el contenido de la sesión todavía no está definido. Mientras
+   tanto, se muestra la pantalla compartida "en construcción" en
+   vez de dejar que Astro devuelva un 404.
+
+   Cuando la sesión tenga contenido real, esta página se
+   reemplaza por su propia composición de _sections/, igual que
+   las entradas del blog (ver src/pages/etapas/etapa1/).
+   ============================================================ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import EncabezadoPagina from "../../../components/EncabezadoPagina.astro";
+import PantallaEnConstruccion from "../../../components/PantallaEnConstruccion.astro";
+---
+
+<BaseLayout titulo="Sesión 1 — Puente Digital">
+  <EncabezadoPagina etiqueta="Sesiones" titulo="Sesión 1" />
+  <PantallaEnConstruccion />
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+/* ============================================================
+   PANTALLA EN CONSTRUCCIÓN
+   ============================================================
+   Contenido de reemplazo para cualquier ruta del menú que ya
+   tiene URL definitiva (en src/Routes/navigation.ts) pero cuyo
+   contenido todavía no está redactado ni maquetado.
+
+   POR QUÉ EXISTE: antes, entrar a una de esas rutas mostraba el
+   404 de Astro, que no distingue "no existe" de "todavía no
+   está lista". Este componente deja la ruta viva, avisa con
+   claridad que el contenido llega después y evita que el
+   usuario piense que el enlace del menú está roto.
+
+   Uso: cada pantalla pendiente importa BaseLayout +
+   EncabezadoPagina + este componente. El <h1> lo sigue poniendo
+   EncabezadoPagina (una sola vez por documento); este componente
+   sólo aporta el bloque visual central.
+   ============================================================ */
+interface Props {
+  /** Mensaje de apoyo bajo el título. Tiene un valor por defecto genérico. */
+  mensaje?: string;
+}
+
+const {
+  mensaje = "Estamos preparando este contenido. Muy pronto vas a encontrar aquí la información completa.",
+} = Astro.props;
+---
+
+<div class="mx-auto max-w-5xl px-md py-2xl text-center lg:px-xl">
+  <svg
+    class="mx-auto shrink-0 text-primary-300"
+    style="width: 6rem; height: 6rem;"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="m14.5 3.5 6 6-2.5 2.5-6-6z" />
+    <path d="M12.5 5.5 5 13a2 2 0 0 0-.5 1L3 19l4.5-1.5a2 2 0 0 0 1-.5l7.5-7.5" />
+    <path d="M3 19h4.5" />
+    <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" stroke="none" />
+  </svg>
+
+  <p class="mt-lg inline-flex items-center gap-xs rounded-sm bg-accent-100 px-sm py-1 text-xs font-semibold tracking-widest text-accent-700 uppercase">
+    En construcción
+  </p>
+
+  <p class="mx-auto mt-md max-w-3xl text-lg text-text-muted">{mensaje}</p>
+</div>
