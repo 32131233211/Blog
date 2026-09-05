@@ -25,10 +25,26 @@ interface Integrante {
 }
 
 const EQUIPO: readonly Integrante[] = [
+  // Marlon: sin foto todavía -> la tarjeta muestra sus iniciales.
   { nombre: "Marlon", carrera: null, foto: null, sesion: "Sesión 1" },
-  { nombre: "Brando", carrera: "Ingeniería de Software", foto: null, sesion: "Sesión 2" },
-  { nombre: "Sebastián", carrera: "Ingeniería de Software", foto: null, sesion: "Sesión 3" },
-  { nombre: "Yeimi", carrera: null, foto: null, sesion: "Sesión 4" },
+  {
+    nombre: "Brando",
+    carrera: "Ingeniería de Software",
+    foto: "/assets/equipo/brando.jpeg",
+    sesion: "Sesión 2",
+  },
+  {
+    nombre: "Sebastián",
+    carrera: "Ingeniería de Software",
+    foto: "/assets/equipo/sebastian.jpg",
+    sesion: "Sesión 3",
+  },
+  {
+    nombre: "Yeimi",
+    carrera: null,
+    foto: "/assets/equipo/yeimi.jpeg",
+    sesion: "Sesión 4",
+  },
 ];
 
 /** Iniciales para el marcador de foto (máximo 2 letras). */
