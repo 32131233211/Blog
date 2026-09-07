@@ -29,10 +29,20 @@ interface Referencia {
 }
 
 const REFERENCIAS: readonly Referencia[] = [
-  { cita: "Referencia 1 en normas APA (autor, año, título, fuente).", pendiente: true },
-  { cita: "Referencia 2 en normas APA (autor, año, título, fuente).", pendiente: true },
-  { cita: "Referencia 3 en normas APA (autor, año, título, fuente).", pendiente: true },
+  {
+    cita:
+      "Pacheco Duarte, J. F. et al. (2022). Ruta de Innovación Social: Paso a paso para desarrollar innovaciones sociales (Documento Técnico 02). Corporación Universitaria Minuto de Dios.",
+  },
+  {
+    cita:
+      "Reyna Cruz, W. E., Carreón Corona, A. L. & Armijo Mena, S. G. (2019). La interrelación de diferentes disciplinas para el abordaje científico de fenómenos y problemas sociales. Revista Latinoamericana de Metodología de las Ciencias Sociales, 9(2).",
+  },
 ];
+
+const ENLACES_REFERENCIAS = [
+  { titulo: "Guía multidimensional", url: "" },
+  { titulo: "Plan de trabajo", url: "" },
+] as const;
 ---
 
 <SeccionBase
@@ -80,6 +90,25 @@ const REFERENCIAS: readonly Referencia[] = [
           ))
         }
       </ul>
+
+      <div class="mt-md grid grid-cols-1 gap-sm sm:grid-cols-2">
+        {
+          ENLACES_REFERENCIAS.map((enlace) => (
+            <a
+              href={enlace.url || undefined}
+              aria-disabled={!enlace.url}
+              class:list={[
+                "flex min-h-11 items-center justify-center rounded-sm border border-primary px-sm py-xs text-center font-medium no-underline",
+                enlace.url
+                  ? "bg-primary text-white hover:bg-primary-600"
+                  : "cursor-not-allowed bg-primary-50 text-primary-800",
+              ]}
+            >
+              {enlace.titulo}
+            </a>
+          ))
+        }
+      </div>
     </article>
   </div>
 </SeccionBase>
