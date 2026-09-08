@@ -43,7 +43,7 @@ Adultos mayores con poco o nulo conocimiento sobre tecnología.
 | 1 | Marlon | Reconocimiento de interfaces de un celular (símbolos, llamadas, funcionalidades, apps principales, introducción al manejo del celular) |
 | 2 | Brando | Comunicaciones: WhatsApp, videollamadas, compartir ubicación, crear y utilizar correo electrónico, escanear documentos |
 | 3 | Sebastián | Pautas de seguridad: SMS, correo electrónico, manejo de contraseñas, MFA, descarga segura de aplicaciones |
-| 4 | Yeimi | Verificación de links, navegación en buscadores, cómo descargar y almacenar un documento, organización de ficheros |
+| 4 | Yeimy | Verificación de links, navegación en buscadores, cómo descargar y almacenar un documento, organización de ficheros |
 
 ## Identidad de marca
 
