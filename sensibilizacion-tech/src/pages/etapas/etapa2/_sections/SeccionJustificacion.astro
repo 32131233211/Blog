@@ -41,7 +41,7 @@ const REFERENCIAS: readonly Referencia[] = [
 
 const ENLACES_REFERENCIAS = [
   { titulo: "Guía multidimensional", url: "https://uniminuto0-my.sharepoint.com/:w:/g/personal/yeimy_calle_uniminuto_edu_co/IQBiZ78h2xZFR7e5hlJgLJYOAXSNHk2lfMB3t6NN7HOdxBY?e=Vzmj9n" },
-  { titulo: "Plan de trabajo", url: "" },
+  { titulo: "Plan de trabajo", url: "https://uniminuto0-my.sharepoint.com/:w:/g/personal/yeimy_calle_uniminuto_edu_co/IQBiZ78h2xZFR7e5hlJgLJYOAXSNHk2lfMB3t6NN7HOdxBY?e=Vzmj9n" },
 ] as const;
 ---
 
@@ -96,6 +96,8 @@ const ENLACES_REFERENCIAS = [
           ENLACES_REFERENCIAS.map((enlace) => (
             <a
               href={enlace.url || undefined}
+              target={enlace.url ? "_blank" : undefined}
+              rel={enlace.url ? "noopener noreferrer" : undefined}
               aria-disabled={!enlace.url}
               class:list={[
                 "flex min-h-11 items-center justify-center rounded-sm border border-primary px-sm py-xs text-center font-medium no-underline",
