@@ -30,18 +30,22 @@ interface Referencia {
 
 const REFERENCIAS: readonly Referencia[] = [
   {
-    cita:
-      "Pacheco Duarte, J. F. et al. (2022). Ruta de Innovación Social: Paso a paso para desarrollar innovaciones sociales (Documento Técnico 02). Corporación Universitaria Minuto de Dios.",
+    cita: "Pacheco Duarte, J. F. et al. (2022). Ruta de Innovación Social: Paso a paso para desarrollar innovaciones sociales (Documento Técnico 02). Corporación Universitaria Minuto de Dios.",
   },
   {
-    cita:
-      "Reyna Cruz, W. E., Carreón Corona, A. L. & Armijo Mena, S. G. (2019). La interrelación de diferentes disciplinas para el abordaje científico de fenómenos y problemas sociales. Revista Latinoamericana de Metodología de las Ciencias Sociales, 9(2).",
+    cita: "Reyna Cruz, W. E., Carreón Corona, A. L. & Armijo Mena, S. G. (2019). La interrelación de diferentes disciplinas para el abordaje científico de fenómenos y problemas sociales. Revista Latinoamericana de Metodología de las Ciencias Sociales, 9(2).",
   },
 ];
 
 const ENLACES_REFERENCIAS = [
-  { titulo: "Guía multidimensional", url: "https://uniminuto0-my.sharepoint.com/:w:/g/personal/yeimy_calle_uniminuto_edu_co/IQBiZ78h2xZFR7e5hlJgLJYOAX1tLQ9WsZ_Qdm-pEj_rHvg?e=9S4sJM" },
-  { titulo: "Plan de trabajo", url: "https://uniminuto0-my.sharepoint.com/:w:/g/personal/yeimy_calle_uniminuto_edu_co/IQBiZ78h2xZFR7e5hlJgLJYOAX1tLQ9WsZ_Qdm-pEj_rHvg?e=9S4sJM" },
+  {
+    titulo: "Guía multidimensional",
+    url: "https://uniminuto0-my.sharepoint.com/:w:/g/personal/yeimy_calle_uniminuto_edu_co/IQBiZ78h2xZFR7e5hlJgLJYOAcM2btBkhnHaJUZlpmwozF0?e=EvGGdW",
+  },
+  {
+    titulo: "Plan de trabajo",
+    url: "https://uniminuto0-my.sharepoint.com/:w:/g/personal/yeimy_calle_uniminuto_edu_co/IQBiZ78h2xZFR7e5hlJgLJYOAcM2btBkhnHaJUZlpmwozF0?e=EvGGdW",
+  },
 ] as const;
 ---
 
@@ -55,7 +59,11 @@ const ENLACES_REFERENCIAS = [
     <!-- ---------- Justificación ---------- -->
     <article class="card border border-line">
       <div class="flex flex-col gap-sm">
-        {JUSTIFICACION.map((parrafo) => <p class="text-text-muted">{parrafo}</p>)}
+        {
+          JUSTIFICACION.map((parrafo) => (
+            <p class="text-text-muted">{parrafo}</p>
+          ))
+        }
       </div>
     </article>
 
@@ -78,9 +86,16 @@ const ENLACES_REFERENCIAS = [
                   {referencia.url && (
                     <>
                       {" "}
-                      <a href={referencia.url} target="_blank" rel="noopener noreferrer">
+                      <a
+                        href={referencia.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {referencia.url}
-                        <span class="sr-only"> (se abre en una pestaña nueva)</span>
+                        <span class="sr-only">
+                          {" "}
+                          (se abre en una pestaña nueva)
+                        </span>
                       </a>
                     </>
                   )}

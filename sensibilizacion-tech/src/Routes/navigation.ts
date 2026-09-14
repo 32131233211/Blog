@@ -48,9 +48,9 @@ const ICONS = {
    Carpeta compartida del equipo en OneDrive (SharePoint UNIMINUTO).
    ------------------------------------------------------------ */
 export const ONEDRIVE_URL =
-  "https://uniminuto0-my.sharepoint.com/:f:/g/personal/yeimy_calle_uniminuto_edu_co/IgAWvmauNsMuTp2YRI57MKY4AYcQO9BpxW5xACVUIsWFPW4?e=9OksPz";
+  "https://uniminuto0-my.sharepoint.com/:f:/g/personal/yeimy_calle_uniminuto_edu_co/IgAWvmauNsMuTp2YRI57MKY4AUrEF5FobMXAkVictHmos84?e=Lw8OYn";
 
-/* ------------------------------------------------------------
+/* ------------------------------------------------------------ 
    RUTAS NOMBRADAS
    Fuente única de las direcciones del sitio. El menú de abajo se
    arma con ellas, y cualquier enlace interno que aparezca DENTRO
