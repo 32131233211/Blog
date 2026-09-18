@@ -1,0 +1,155 @@
+---
+/* ============================================================
+   ENTRADA 3 (parte 4) — Enlaces y Grabaciones
+   ============================================================
+   Sección con 3 enlaces de acceso directo:
+     1. Materiales de clase (diapositivas, guías y presentaciones).
+     2. Video de la Capacitación 1 en Microsoft Teams.
+     3. Video de la Capacitación 2 en Microsoft Teams.
+
+   CÓMO COMPLETAR:
+   Asignar las URLs correspondientes en la propiedad `url` de cada
+   objeto en ENLACES. Si la URL está vacía (""), el botón se muestra
+   en estado pendiente de forma accesible.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+
+interface EnlaceRecurso {
+  readonly tipo: "material" | "video";
+  readonly etiqueta: string;
+  readonly titulo: string;
+  readonly subtitulo: string;
+  readonly descripcion: string;
+  readonly url: string;
+  readonly etiquetaBoton: string;
+}
+
+const ENLACES: readonly EnlaceRecurso[] = [
+  {
+    tipo: "material",
+    etiqueta: "Material pedagógico",
+    titulo: "Materiales de clase",
+    subtitulo: "Diapositivas y guías de trabajo",
+    descripcion:
+      "Presentaciones, infografías y guías visuales utilizadas durante las capacitaciones de sensibilización tecnológica.",
+    url: "", // Ingrese aquí la URL a los materiales de clase (OneDrive, Drive, PDF, etc.)
+    etiquetaBoton: "Ver materiales de clase",
+  },
+  {
+    tipo: "video",
+    etiqueta: "Grabación en Teams",
+    titulo: "Video: Capacitación 1",
+    subtitulo: "Reconocimiento del celular",
+    descripcion:
+      "Grabación directa en Microsoft Teams de la sesión sobre interfaces, botones físicos, símbolos y llamadas.",
+    url: "", // Ingrese aquí la URL de la grabación de la Capacitación 1 en Teams
+    etiquetaBoton: "Ver video en Teams",
+  },
+  {
+    tipo: "video",
+    etiqueta: "Grabación en Teams",
+    titulo: "Video: Capacitación 2",
+    subtitulo: "Herramientas de comunicación",
+    descripcion:
+      "Grabación directa en Microsoft Teams de la sesión sobre WhatsApp, videollamadas, correo y ubicación.",
+    url: "", // Ingrese aquí la URL de la grabación de la Capacitación 2 en Teams
+    etiquetaBoton: "Ver video en Teams",
+  },
+];
+---
+
+<SeccionBase id="enlaces" titulo="Enlaces" descripcion="" fondo="alt">
+  <div class="grid grid-cols-1 gap-md lg:grid-cols-3">
+    {
+      ENLACES.map((enlace) => (
+        <article class="card flex flex-col justify-between border border-line">
+          <div>
+            <div class="flex items-center gap-xs">
+              {enlace.tipo === "video" ? (
+                <svg
+                  class="size-5 shrink-0 text-secondary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <polygon points="23 7 16 12 23 17 23 7" />
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                </svg>
+              ) : (
+                <svg
+                  class="size-5 shrink-0 text-primary"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                  <polyline points="14 2 14 8 20 8" />
+                </svg>
+              )}
+              <span
+                class:list={[
+                  "text-xs font-semibold tracking-wider uppercase",
+                  enlace.tipo === "video" ? "text-secondary" : "text-primary",
+                ]}
+              >
+                {enlace.etiqueta}
+              </span>
+            </div>
+
+            <h3 class="mt-xs text-xl text-text">{enlace.titulo}</h3>
+            <p class="mt-xs text-xs font-medium text-text-muted">
+              {enlace.subtitulo}
+            </p>
+            <p class="mt-sm text-sm text-text-muted">{enlace.descripcion}</p>
+          </div>
+
+          <div class="mt-md border-t border-line/60 pt-sm">
+            {enlace.url ? (
+              <a
+                href={enlace.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex min-h-11 items-center justify-center gap-xs rounded-sm bg-primary px-sm py-xs text-center text-sm font-medium text-white no-underline transition-colors hover:bg-primary-600"
+              >
+                <span>{enlace.etiquetaBoton}</span>
+                <svg
+                  class="size-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                <span class="sr-only"> (se abre en una pestaña nueva)</span>
+              </a>
+            ) : (
+              <div class="flex flex-col gap-xs">
+                <span
+                  class="flex min-h-11 cursor-not-allowed items-center justify-center rounded-sm border border-line bg-bg-alt px-sm py-xs text-center text-sm font-medium text-text-muted"
+                  aria-disabled="true"
+                >
+                  Enlace pendiente de configurar
+                </span>
+                <p class="text-center text-xs text-text-muted" />
+              </div>
+            )}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</SeccionBase>

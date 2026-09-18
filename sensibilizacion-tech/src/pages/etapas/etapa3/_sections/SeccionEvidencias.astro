@@ -1,0 +1,294 @@
+---
+/* ============================================================
+   ENTRADA 3 (parte 2) — Evidencia (fotos) y Descripción
+   ============================================================
+   Estructura simétrica de dos columnas principales:
+     · Columna Izquierda: Capacitación 2 (Comunicaciones y apps).
+     · Columna Derecha: Capacitación 1 (Reconocimiento del celular).
+
+   Cada columna contiene una cuadrícula idéntica de 6 cuadros de
+   imagen distribuidos en 3 filas (2 cuadros por fila):
+     - Fila 1: Cuadros 1 y 2
+     - Fila 2: Cuadros 3 y 4
+     - Fila 3: Cuadros 5 y 6
+
+   CÓMO ASIGNAR FOTOS REALES:
+   Colocar los archivos en public/assets/evidencias/ (o ruta pública),
+   y reemplazar `src: null` por la ruta correspondiente (ej. "/assets/evidencias/foto1.jpg"),
+   ajustando también el texto descriptivo de `alt` y `descripcion`.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+
+interface FotoEvidencia {
+  /** Ruta pública del archivo de imagen. Si es null, renderiza el cuadro de reserva punteado. */
+  readonly src: string | null;
+  /** Texto alternativo accesible que describe el contenido de la imagen. */
+  readonly alt: string;
+  /** Pie de foto o descripción detallada de la evidencia. */
+  readonly descripcion: string;
+  /** Etiqueta indicativa del cuadro mientras esté pendiente de imagen. */
+  readonly etiqueta: string;
+}
+
+/* ------------------------------------------------------------
+   COLUMNA IZQUIERDA: CAPACITACIÓN 2 (6 cuadros en 3 filas de 2)
+   Facilitador: Brando García | Temática: Comunicaciones
+   ------------------------------------------------------------ */
+const FOTOS_CAPACITACION_2: readonly FotoEvidencia[] = [
+  // Fila 1 (2 cuadros)
+  {
+    src: null,
+    alt: "Participante realizando una llamada y configurando contactos en su celular.",
+    descripcion:
+      "Práctica guiada en la libreta de contactos y realización de llamadas telefónicas.",
+    etiqueta: "Cuadro 1 — Contactos y llamadas",
+  },
+  {
+    src: null,
+    alt: "Demostración del envío de mensajes y notas de voz a través de WhatsApp.",
+    descripcion:
+      "Envío seguro de mensajes de texto, audios e imágenes por WhatsApp.",
+    etiqueta: "Cuadro 2 — Mensajería instantánea",
+  },
+  // Fila 2 (2 cuadros)
+  {
+    src: null,
+    alt: "Participante interactuando en videollamada de prueba con su facilitador.",
+    descripcion:
+      "Uso de la cámara, micrófono y funciones durante una videollamada.",
+    etiqueta: "Cuadro 3 — Videollamadas",
+  },
+  {
+    src: null,
+    alt: "Pantalla del celular mostrando cómo compartir la ubicación en tiempo real.",
+    descripcion:
+      "Explicación paso a paso para compartir la ubicación en caso de necesidad.",
+    etiqueta: "Cuadro 4 — Compartir ubicación",
+  },
+  // Fila 3 (2 cuadros)
+  {
+    src: null,
+    alt: "Creación y consulta de la bandeja de entrada del correo electrónico.",
+    descripcion:
+      "Reconocimiento del correo electrónico institucional y personal en el móvil.",
+    etiqueta: "Cuadro 5 — Correo electrónico",
+  },
+  {
+    src: null,
+    alt: "Uso de la cámara del celular para escanear un documento físico.",
+    descripcion:
+      "Digitalización sencilla de documentos con la cámara del dispositivo.",
+    etiqueta: "Cuadro 6 — Escaneo de documentos",
+  },
+];
+
+/* ------------------------------------------------------------
+   COLUMNA DERECHA: CAPACITACIÓN 1 (6 cuadros en 3 filas de 2)
+   Facilitador: Marlon Muñoz | Temática: Reconocimiento de celular
+   ------------------------------------------------------------ */
+const FOTOS_CAPACITACION_1: readonly FotoEvidencia[] = [
+  // Fila 1 (2 cuadros)
+  {
+    src: null,
+    alt: "Presentación inicial del equipo y bienvenida a los adultos mayores participantes.",
+    descripcion:
+      "Apertura de la sesión y encuadre inicial sobre los componentes del móvil.",
+    etiqueta: "Cuadro 1 — Introducción y bienvenida",
+  },
+  {
+    src: null,
+    alt: "Identificación de botones físicos y áreas táctiles de la pantalla.",
+    descripcion:
+      "Reconocimiento de botones físicos (encendido, volumen) y gestos en pantalla.",
+    etiqueta: "Cuadro 2 — Botones y pantalla táctil",
+  },
+  // Fila 2 (2 cuadros)
+  {
+    src: null,
+    alt: "Explicación visual de los íconos de la barra de estado: batería, wifi y señal.",
+    descripcion:
+      "Lectura de íconos de estado: wifi, nivel de batería, volumen y señal.",
+    etiqueta: "Cuadro 3 — Barra de estado y símbolos",
+  },
+  {
+    src: null,
+    alt: "Navegación en la pantalla principal y organización de aplicaciones prioritarias.",
+    descripcion:
+      "Ubicación de las aplicaciones de uso frecuente en la pantalla de inicio.",
+    etiqueta: "Cuadro 4 — Pantalla de inicio y apps",
+  },
+  // Fila 3 (2 cuadros)
+  {
+    src: null,
+    alt: "Configuración del tamaño de letra y brillo de pantalla para mayor legibilidad.",
+    descripcion:
+      "Ajustes de accesibilidad: ampliación de texto y regulación del brillo.",
+    etiqueta: "Cuadro 5 — Ajustes de accesibilidad",
+  },
+  {
+    src: null,
+    alt: "Espacio de preguntas, repaso y resolución de inquietudes individuales.",
+    descripcion:
+      "Ronda de práctica autónoma con acompañamiento individualizado.",
+    etiqueta: "Cuadro 6 — Práctica individual y cierre",
+  },
+];
+---
+
+<SeccionBase
+  id="evidencias-capacitaciones"
+  titulo="Evidencia y descripción de las capacitaciones"
+  descripcion=""
+  fondo="alt"
+>
+  <!-- Contenedor principal de dos columnas: Izquierda = Capacitación 2 | Derecha = Capacitación 1 -->
+  <div class="grid grid-cols-1 gap-lg lg:grid-cols-2 lg:gap-xl">
+    <!-- ============================================================
+         COLUMNA IZQUIERDA: CAPACITACIÓN 2
+         ============================================================ -->
+    <article class="flex flex-col">
+      <header class="border-b border-line pb-sm">
+        <p
+          class="text-xs font-semibold tracking-wider text-secondary uppercase"
+        >
+          Capacitación 2 — Sesión práctica
+        </p>
+        <h3 class="mt-xs text-xl text-text">
+          Herramientas de comunicación digital
+        </h3>
+        <p class="mt-xs text-sm text-text-muted">
+          <strong>Facilitador:</strong> Brando García Ariza &bull; <strong
+            >Enfoque:</strong
+          > WhatsApp, videollamadas, correo y ubicación.
+        </p>
+        <div class="mt-sm rounded-sm bg-bg p-sm border border-line">
+          <p class="text-sm text-text-muted">
+            <strong>Descripción de la evidencia:</strong> Registro del aprendizaje
+            en el uso de canales de comunicación interactivos. Se evidencia la interacción
+            práctica de los participantes redactando mensajes, respondiendo videollamadas
+            de prueba y compartiendo su ubicación de forma supervisada.
+          </p>
+        </div>
+      </header>
+
+      <!-- Cuadrícula interna de 6 cuadros (3 filas x 2 columnas) -->
+      <ul class="mt-md grid grid-cols-2 gap-sm sm:gap-md" role="list">
+        {
+          FOTOS_CAPACITACION_2.map((foto) => (
+            <li class="flex flex-col">
+              <figure class="flex h-full flex-col">
+                {foto.src ? (
+                  <img
+                    src={foto.src}
+                    alt={foto.alt}
+                    class="aspect-4/3 w-full rounded-md border border-line object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    class="flex aspect-4/3 w-full flex-col items-center justify-center rounded-md border-2 border-dashed border-line bg-bg p-xs text-center transition-colors hover:border-primary-400"
+                    aria-label={foto.etiqueta}
+                  >
+                    <svg
+                      class="size-8 text-line sm:size-10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <circle cx="9" cy="10" r="1.5" />
+                      <path d="m4 17 5-5 4 4 3-2 4 4" />
+                    </svg>
+                    <span class="mt-xs text-xs font-medium text-text-muted line-clamp-1">
+                      {foto.etiqueta}
+                    </span>
+                  </div>
+                )}
+                <figcaption class="mt-xs text-xs sm:text-sm text-text-muted">
+                  {foto.descripcion}
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+
+    <!-- ============================================================
+         COLUMNA DERECHA: CAPACITACIÓN 1
+         ============================================================ -->
+    <article class="flex flex-col">
+      <header class="border-b border-line pb-sm">
+        <p class="text-xs font-semibold tracking-wider text-primary uppercase">
+          Capacitación 1 — Sesión práctica
+        </p>
+        <h3 class="mt-xs text-xl text-text">
+          Reconocimiento de interfaces del celular
+        </h3>
+        <p class="mt-xs text-sm text-text-muted">
+          <strong>Facilitador:</strong> Marlon Muñoz Romero &bull; <strong
+            >Enfoque:</strong
+          > Interfaces, símbolos, llamadas y apps básicas.
+        </p>
+        <div class="mt-sm rounded-sm bg-bg p-sm border border-line">
+          <p class="text-sm text-text-muted">
+            <strong>Descripción de la evidencia:</strong> Registro de la sesión introductoria
+            de sensibilización. Se documenta la exploración de los participantes sobre
+            sus dispositivos, la identificación de los íconos de la pantalla de inicio
+            y la configuración de tamaño de fuente y volumen.
+          </p>
+        </div>
+      </header>
+
+      <!-- Cuadrícula interna de 6 cuadros (3 filas x 2 columnas) -->
+      <ul class="mt-md grid grid-cols-2 gap-sm sm:gap-md" role="list">
+        {
+          FOTOS_CAPACITACION_1.map((foto) => (
+            <li class="flex flex-col">
+              <figure class="flex h-full flex-col">
+                {foto.src ? (
+                  <img
+                    src={foto.src}
+                    alt={foto.alt}
+                    class="aspect-4/3 w-full rounded-md border border-line object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    class="flex aspect-4/3 w-full flex-col items-center justify-center rounded-md border-2 border-dashed border-line bg-bg p-xs text-center transition-colors hover:border-primary-400"
+                    aria-label={foto.etiqueta}
+                  >
+                    <svg
+                      class="size-8 text-line sm:size-10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <circle cx="9" cy="10" r="1.5" />
+                      <path d="m4 17 5-5 4 4 3-2 4 4" />
+                    </svg>
+                    <span class="mt-xs text-xs font-medium text-text-muted line-clamp-1">
+                      {foto.etiqueta}
+                    </span>
+                  </div>
+                )}
+                <figcaption class="mt-xs text-xs sm:text-sm text-text-muted">
+                  {foto.descripcion}
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+</SeccionBase>

@@ -1,0 +1,64 @@
+---
+/* ============================================================
+   ENTRADA 3 (parte 3) — Reflexión
+   ============================================================
+   Espacio para el análisis reflexivo del equipo sobre el proceso
+   pedagógico, la experiencia compartida con los adultos mayores,
+   las dificultades sorteadas y los aprendizajes obtenidos.
+
+   CÓMO COMPLETAR:
+   Modificar o ampliar los párrafos en el arreglo PARRAFOS_REFLEXION.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+
+const PARRAFOS_REFLEXION: readonly string[] = [
+  "El desarrollo de estas dos primeras capacitaciones nos ha demostrado que la brecha digital no responde a una falta de interés o de capacidad por parte de las personas adultas mayores, sino a la escasez de espacios de aprendizaje diseñados con empatía, paciencia y un lenguaje cotidiano que prescinda de tecnicismos abrumadores.",
+  "Durante la primera sesión, el principal reto consistió en superar el temor inicial a 'dañar el dispositivo' o 'desconfigurar algo'. A través del reconocimiento guiado de símbolos y funciones básicas, se logró transformar esa incertidumbre en curiosidad y confianza. Para la segunda sesión, enfocada en comunicaciones, los participantes mostraron una motivación inmediata al comprobar cómo WhatsApp y las videollamadas les permiten mantenerse conectados de manera directa y afectuosa con sus familias.",
+  "Esta experiencia refuerza la importancia del rol de facilitadores comunitarios. Cada pequeño avance —enviar una nota de voz por cuenta propia, reconocer el nivel de batería o distinguir una notificación real— representa un paso significativo hacia una mayor autonomía personal y una mejor calidad de vida en la era digital.",
+];
+---
+
+<SeccionBase
+  id="reflexion-proceso"
+  titulo="Reflexión"
+  descripcion=""
+  fondo="base"
+>
+  <div class="flex flex-col gap-lg">
+    <article class="card border border-line">
+      <div class="flex flex-col gap-sm">
+        {
+          PARRAFOS_REFLEXION.map((parrafo) => (
+            <p class="text-text-muted">{parrafo}</p>
+          ))
+        }
+      </div>
+    </article>
+
+    <!-- Puntos clave del aprendizaje reflexivo -->
+    <aside class="grid grid-cols-1 gap-md sm:grid-cols-2">
+      <div class="rounded-md border-l-4 border-primary bg-primary-50 p-md">
+        <h3 class="text-lg font-medium text-primary-900">
+          Familiarización con el celular
+        </h3>
+        <p class="mt-xs text-sm text-primary-800">
+          Reconocer los íconos, botones y elementos principales de la interfaz
+          permite comprender cómo navegar por el celular, facilitando el acceso
+          a las aplicaciones y funciones más utilizadas.
+        </p>
+      </div>
+
+      <div class="rounded-md border-l-4 border-secondary bg-secondary-50 p-md">
+        <h3 class="text-lg font-medium text-secondary-900">
+          Comunicación digital para la vida cotidiana
+        </h3>
+        <p class="mt-xs text-sm text-secondary-800">
+          Aprender a utilizar herramientas como WhatsApp, las videollamadas, el
+          correo electrónico, la ubicación y el escaneo de documentos facilita
+          la comunicación, el intercambio de información y la realización de
+          actividades cotidianas de manera más sencilla y autónoma.
+        </p>
+      </div>
+    </aside>
+  </div>
+</SeccionBase>
