@@ -32,8 +32,8 @@ const ENLACES: readonly EnlaceRecurso[] = [
     subtitulo: "Diapositivas y guías de trabajo",
     descripcion:
       "Presentaciones, infografías y guías visuales utilizadas durante las capacitaciones de sensibilización tecnológica.",
-    url: "", // Ingrese aquí la URL a los materiales de clase (OneDrive, Drive, PDF, etc.)
-    etiquetaBoton: "Ver materiales de clase",
+    url: "https://uniminuto0-my.sharepoint.com/:f:/g/personal/yeimy_calle_uniminuto_edu_co/IgDdz7BxNYQ6RoNFIcfjDIsvAaqu-xE0oM2jxjfqQRiXfaA?e=qDcD9G",
+    etiquetaBoton: "Ver materiales",
   },
   {
     tipo: "video",
@@ -42,8 +42,8 @@ const ENLACES: readonly EnlaceRecurso[] = [
     subtitulo: "Reconocimiento del celular",
     descripcion:
       "Grabación directa en Microsoft Teams de la sesión sobre interfaces, botones físicos, símbolos y llamadas.",
-    url: "", // Ingrese aquí la URL de la grabación de la Capacitación 1 en Teams
-    etiquetaBoton: "Ver video en Teams",
+    url: "https://uniminuto0-my.sharepoint.com/:v:/g/personal/yeimy_calle_uniminuto_edu_co/IQC77bZArOpEQKNv1eKaUC36AZCNjOSXctMaEr3dCEnQmqU?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=S5lhM9",
+    etiquetaBoton: "Ver video",
   },
   {
     tipo: "video",
@@ -52,8 +52,8 @@ const ENLACES: readonly EnlaceRecurso[] = [
     subtitulo: "Herramientas de comunicación",
     descripcion:
       "Grabación directa en Microsoft Teams de la sesión sobre WhatsApp, videollamadas, correo y ubicación.",
-    url: "", // Ingrese aquí la URL de la grabación de la Capacitación 2 en Teams
-    etiquetaBoton: "Ver video en Teams",
+    url: "https://uniminuto0-my.sharepoint.com/:v:/g/personal/yeimy_calle_uniminuto_edu_co/IQBaT5WYeewhR7w9F5hZ66LMAUvEAPL11huOGG96QSMPujk?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=kBBrDC",
+    etiquetaBoton: "Ver video",
   },
 ];
 ---
@@ -117,11 +117,12 @@ const ENLACES: readonly EnlaceRecurso[] = [
                 href={enlace.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`${enlace.etiquetaBoton}: ${enlace.subtitulo} (se abre en una pestaña nueva)`}
                 class="flex min-h-11 items-center justify-center gap-xs rounded-sm bg-primary px-sm py-xs text-center text-sm font-medium text-white no-underline transition-colors hover:bg-primary-600"
               >
-                <span>{enlace.etiquetaBoton}</span>
+                <span aria-hidden="true">{enlace.etiquetaBoton}</span>
                 <svg
-                  class="size-4"
+                  class="size-4 shrink-0"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -134,7 +135,6 @@ const ENLACES: readonly EnlaceRecurso[] = [
                   <polyline points="15 3 21 3 21 9" />
                   <line x1="10" y1="14" x2="21" y2="3" />
                 </svg>
-                <span class="sr-only"> (se abre en una pestaña nueva)</span>
               </a>
             ) : (
               <div class="flex flex-col gap-xs">
