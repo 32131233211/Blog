@@ -3,8 +3,8 @@
    ENTRADA 3 (parte 2) — Evidencia (fotos) y Descripción
    ============================================================
    Estructura simétrica de dos columnas principales:
-     · Columna Izquierda: Capacitación 2 (Comunicaciones y apps).
-     · Columna Derecha: Capacitación 1 (Reconocimiento del celular).
+     · Columna Izquierda: Capacitación 1 (Reconocimiento del celular).
+     · Columna Derecha: Capacitación 2 (Comunicaciones y apps).
 
    Cada columna contiene una cuadrícula idéntica de 6 cuadros de
    imagen distribuidos en 3 filas (2 cuadros por fila):
@@ -31,7 +31,7 @@ interface FotoEvidencia {
 }
 
 /* ------------------------------------------------------------
-   COLUMNA IZQUIERDA: CAPACITACIÓN 2 (6 cuadros en 3 filas de 2)
+   COLUMNA DERECHA: CAPACITACIÓN 2 (6 cuadros en 3 filas de 2)
    Facilitador: Brando García | Temática: Comunicaciones
    ------------------------------------------------------------ */
 const FOTOS_CAPACITACION_2: readonly FotoEvidencia[] = [
@@ -83,7 +83,7 @@ const FOTOS_CAPACITACION_2: readonly FotoEvidencia[] = [
 ];
 
 /* ------------------------------------------------------------
-   COLUMNA DERECHA: CAPACITACIÓN 1 (6 cuadros en 3 filas de 2)
+   COLUMNA IZQUIERDA: CAPACITACIÓN 1 (6 cuadros en 3 filas de 2)
    Facilitador: Marlon Muñoz | Temática: Reconocimiento de celular
    ------------------------------------------------------------ */
 const FOTOS_CAPACITACION_1: readonly FotoEvidencia[] = [
@@ -141,32 +141,30 @@ const FOTOS_CAPACITACION_1: readonly FotoEvidencia[] = [
   descripcion=""
   fondo="alt"
 >
-  <!-- Contenedor principal de dos columnas: Izquierda = Capacitación 2 | Derecha = Capacitación 1 -->
+  <!-- Contenedor principal de dos columnas: Izquierda = Capacitación 1 | Derecha = Capacitación 2 -->
   <div class="grid grid-cols-1 gap-lg lg:grid-cols-2 lg:gap-xl">
     <!-- ============================================================
-         COLUMNA IZQUIERDA: CAPACITACIÓN 2
+         COLUMNA IZQUIERDA: CAPACITACIÓN 1
          ============================================================ -->
     <article class="flex flex-col">
       <header class="border-b border-line pb-sm">
-        <p
-          class="text-xs font-semibold tracking-wider text-secondary uppercase"
-        >
-          Capacitación 2 — Sesión práctica
+        <p class="text-xs font-semibold tracking-wider text-primary uppercase">
+          Capacitación 1 — Sesión práctica
         </p>
         <h3 class="mt-xs text-xl text-text">
-          Herramientas de comunicación digital
+          Reconocimiento de interfaces del celular
         </h3>
         <p class="mt-xs text-sm text-text-muted">
-          <strong>Facilitador:</strong> Brando García Ariza &bull; <strong
+          <strong>Facilitador:</strong> Marlon Muñoz Romero &bull; <strong
             >Enfoque:</strong
-          > WhatsApp, videollamadas, correo y ubicación.
+          > Interfaces, símbolos, llamadas y apps básicas.
         </p>
         <div class="mt-sm rounded-sm bg-bg p-sm border border-line">
           <p class="text-sm text-text-muted">
-            <strong>Descripción de la evidencia:</strong> Registro del aprendizaje
-            en el uso de canales de comunicación interactivos. Se evidencia la interacción
-            práctica de los participantes redactando mensajes, respondiendo videollamadas
-            de prueba y compartiendo su ubicación de forma supervisada.
+            <strong>Descripción de la evidencia:</strong> Registro de la sesión introductoria
+            de sensibilización. Se documenta la exploración de los participantes sobre
+            sus dispositivos, la identificación de los íconos de la pantalla de inicio
+            y la configuración de tamaño de fuente y volumen.
           </p>
         </div>
       </header>
@@ -174,7 +172,7 @@ const FOTOS_CAPACITACION_1: readonly FotoEvidencia[] = [
       <!-- Cuadrícula interna de 6 cuadros (3 filas x 2 columnas) -->
       <ul class="mt-md grid grid-cols-2 gap-sm sm:gap-md" role="list">
         {
-          FOTOS_CAPACITACION_2.map((foto) => (
+          FOTOS_CAPACITACION_1.map((foto) => (
             <li class="flex flex-col">
               <figure class="flex h-full flex-col">
                 {foto.src ? (
@@ -219,27 +217,29 @@ const FOTOS_CAPACITACION_1: readonly FotoEvidencia[] = [
     </article>
 
     <!-- ============================================================
-         COLUMNA DERECHA: CAPACITACIÓN 1
+         COLUMNA DERECHA: CAPACITACIÓN 2
          ============================================================ -->
     <article class="flex flex-col">
       <header class="border-b border-line pb-sm">
-        <p class="text-xs font-semibold tracking-wider text-primary uppercase">
-          Capacitación 1 — Sesión práctica
+        <p
+          class="text-xs font-semibold tracking-wider text-secondary uppercase"
+        >
+          Capacitación 2 — Sesión práctica
         </p>
         <h3 class="mt-xs text-xl text-text">
-          Reconocimiento de interfaces del celular
+          Herramientas de comunicación digital
         </h3>
         <p class="mt-xs text-sm text-text-muted">
-          <strong>Facilitador:</strong> Marlon Muñoz Romero &bull; <strong
+          <strong>Facilitador:</strong> Brando García Ariza &bull; <strong
             >Enfoque:</strong
-          > Interfaces, símbolos, llamadas y apps básicas.
+          > WhatsApp, videollamadas, correo y ubicación.
         </p>
         <div class="mt-sm rounded-sm bg-bg p-sm border border-line">
           <p class="text-sm text-text-muted">
-            <strong>Descripción de la evidencia:</strong> Registro de la sesión introductoria
-            de sensibilización. Se documenta la exploración de los participantes sobre
-            sus dispositivos, la identificación de los íconos de la pantalla de inicio
-            y la configuración de tamaño de fuente y volumen.
+            <strong>Descripción de la evidencia:</strong> Registro del aprendizaje
+            en el uso de canales de comunicación interactivos. Se evidencia la interacción
+            práctica de los participantes redactando mensajes, respondiendo videollamadas
+            de prueba y compartiendo su ubicación de forma supervisada.
           </p>
         </div>
       </header>
@@ -247,7 +247,7 @@ const FOTOS_CAPACITACION_1: readonly FotoEvidencia[] = [
       <!-- Cuadrícula interna de 6 cuadros (3 filas x 2 columnas) -->
       <ul class="mt-md grid grid-cols-2 gap-sm sm:gap-md" role="list">
         {
-          FOTOS_CAPACITACION_1.map((foto) => (
+          FOTOS_CAPACITACION_2.map((foto) => (
             <li class="flex flex-col">
               <figure class="flex h-full flex-col">
                 {foto.src ? (
