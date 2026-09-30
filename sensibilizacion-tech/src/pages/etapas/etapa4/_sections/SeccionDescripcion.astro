@@ -1,0 +1,63 @@
+---
+/* ============================================================
+   ENTRADA 4 (parte 1) — Descripción general de la capacitación
+   ============================================================
+   Presenta el contexto, objetivos y dinámica general de las
+   sesiones 3 y 4 de capacitación realizadas en el marco de
+   Puente Digital (Sabios Digitales).
+
+   Semana 3 — Sebastián: Pautas de seguridad digital.
+   Semana 4 — Yeimi: Navegación segura y organización de documentos.
+
+   CÓMO COMPLETAR:
+   Editar los párrafos en el arreglo DESCRIPCION_GENERAL de abajo.
+   Si se requiere agregar más párrafos, basta con añadir elementos
+   a la lista.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+
+const DESCRIPCION_GENERAL: readonly string[] = [
+  "Como parte del macroproyecto de Inclusión Digital y del programa 'Sabios Digitales', se llevaron a cabo las capacitaciones 3 y 4 de sensibilización tecnológica. Estas sesiones tuvieron como propósito fundamental abordar dos de las problemáticas centrales identificadas en el proyecto: la vulnerabilidad frente a estafas electrónicas y la dificultad para navegar de manera crítica y gestionar documentos digitales de forma autónoma.",
+  "La tercera sesión, liderada por Sebastián Corrales Sepúlveda, estuvo dedicada a las pautas de seguridad digital: identificación de mensajes SMS fraudulentos (smishing), detección de correos electrónicos engañosos (phishing), buenas prácticas para la creación de contraseñas robustas y memorables, uso de la autenticación multifactor (MFA) y descarga segura de aplicaciones desde tiendas oficiales como Google Play Store.",
+  "La cuarta sesión, facilitada por Yeimi Liliana Calle Calvo, se concentró en la navegación crítica y el ordenamiento documental: verificación de enlaces seguros antes de abrirlos (protocolo HTTPS y candado web), uso confiable de buscadores en internet, procedimientos paso a paso para descargar y almacenar documentos (como facturas y citas médicas en formato PDF) y la creación de carpetas para mantener el dispositivo organizado.",
+  "Ambas jornadas mantuvieron la metodología combinada del proyecto: talleres virtuales participativos complementados con el acompañamiento presencial y personalizado de Brando y Sebastián en los hogares de los adultos mayores de La Plata (Huila) y San Cristóbal (Medellín, Antioquia), permitiendo practicar directamente en sus teléfonos en un entorno de paciencia, seguridad y aprendizaje activo."
+];
+---
+
+<SeccionBase
+  id="descripcion-capacitacion"
+  titulo="Descripción general de la capacitación"
+  descripcion=""
+  fondo="base"
+>
+  <div class="flex flex-col gap-lg">
+    <article class="card border border-line">
+      <div class="flex flex-col gap-sm">
+        {
+          DESCRIPCION_GENERAL.map((parrafo) => (
+            <p class="text-text-muted">{parrafo}</p>
+          ))
+        }
+      </div>
+    </article>
+
+    <!-- Resumen metodológico de apoyo -->
+    <aside class="rounded-md border border-line bg-bg-alt p-md">
+      <h3 class="text-lg font-medium text-text">Resumen metodológico de las sesiones</h3>
+      <ul class="mt-sm grid grid-cols-1 gap-sm md:grid-cols-2">
+        <li class="rounded-sm border border-line/60 bg-bg p-sm">
+          <p class="font-medium text-primary-700">Enfoque preventivo y práctico</p>
+          <p class="mt-xs text-sm text-text-muted">
+            Casos reales y cotidianos para aprender a dudar constructivamente, reconocer señales de alerta en mensajes y evitar caer en trampas digitales.
+          </p>
+        </li>
+        <li class="rounded-sm border border-line/60 bg-bg p-sm">
+          <p class="font-medium text-primary-700">Autonomía y orden progresivo</p>
+          <p class="mt-xs text-sm text-text-muted">
+            Práctica paso a paso en el propio teléfono para descargar, guardar y organizar archivos en carpetas sin temor a desconfigurar el dispositivo.
+          </p>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</SeccionBase>

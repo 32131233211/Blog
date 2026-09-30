@@ -1,0 +1,67 @@
+---
+/* ============================================================
+   ENTRADA 4 (parte 3) — Reflexión
+   ============================================================
+   Espacio para el análisis reflexivo del equipo sobre el proceso
+   pedagógico, la experiencia compartida con los adultos mayores,
+   la seguridad digital, la autonomía en la gestión de información
+   y los aprendizajes consolidados al cierre del ciclo formativo.
+
+   CÓMO COMPLETAR:
+   Modificar o ampliar los párrafos en el arreglo PARRAFOS_REFLEXION.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+
+const PARRAFOS_REFLEXION: readonly string[] = [
+  "El avance de la digitalización plantea retos significativos cuando no contempla las realidades de la población adulta mayor. En contextos como La Plata (Huila) y San Cristóbal (Medellín), el acceso material a un teléfono inteligente no garantiza por sí solo la inclusión; por el contrario, sin el conocimiento necesario sobre ciberseguridad, expone a las personas a riesgos graves como el fraude bancario, la suplantación por SMS o correo y el robo de cuentas. La brecha digital no se limita a la conectividad, sino que involucra brechas de uso y de seguridad que reproducen formas de desigualdad estructural ligadas a la edad y al territorio (Arenas de Mesa y Cecchini, 2022, pp. 282-283).",
+  "En este sentido, las capacitaciones de seguridad digital (Semana 3) y de navegación crítica y organización documental (Semana 4) impactan directamente en la dignidad y la autonomía de los participantes. Aprender a discernir la autenticidad de un mensaje, proteger sus contraseñas con verificación en dos pasos y saber descargar y archivar sus comprobantes les permite perder el miedo a la tecnología y dejar de depender de intermediarios para trámites cotidianos. Como señalan Arenas de Mesa y Cecchini (2022, p. 297), garantizar una atención diferenciada y cercana es un vehículo para materializar la universalidad de los derechos. De esta manera, el programa 'Sabios Digitales' contribuye activamente al ODS 10 (Reducción de las desigualdades) y al principio rector de la Agenda 2030 de que nadie se quede atrás (Arenas de Mesa y Cecchini, 2022, p. 280).",
+  "<strong>Referencias</strong>",
+  "Arenas de Mesa, A., y Cecchini, S. (2022). Igualdad y protección social: Claves para un desarrollo inclusivo y sostenible. <em>El Trimestre Económico, 89</em>(353), 277–309. https://doi.org/10.20430/ete.v89i353.1407"
+];
+---
+
+<SeccionBase
+  id="reflexion-proceso"
+  titulo="Reflexión"
+  descripcion=""
+  fondo="base"
+>
+  <div class="flex flex-col gap-lg">
+    <article class="card border border-line">
+      <div class="flex flex-col gap-sm">
+        {
+          PARRAFOS_REFLEXION.map((parrafo) => (
+            <p class="text-text-muted" set:html={parrafo} />
+          ))
+        }
+      </div>
+    </article>
+
+    <!-- Puntos clave del aprendizaje reflexivo -->
+    <aside class="grid grid-cols-1 gap-md sm:grid-cols-2">
+      <div class="rounded-md border-l-4 border-primary bg-primary-50 p-md">
+        <h3 class="text-lg font-medium text-primary-900">
+          Seguridad y prevención de riesgos digitales
+        </h3>
+        <p class="mt-xs text-sm text-primary-800">
+          Comprender las señales de alerta ante fraudes (SMS y correos sospechosos),
+          crear contraseñas seguras y utilizar la verificación en dos pasos (MFA)
+          devuelve la tranquilidad a los adultos mayores, mitigando la vulnerabilidad
+          y el temor frente a las estafas electrónicas.
+        </p>
+      </div>
+
+      <div class="rounded-md border-l-4 border-secondary bg-secondary-50 p-md">
+        <h3 class="text-lg font-medium text-secondary-900">
+          Autonomía en la búsqueda y orden de documentos
+        </h3>
+        <p class="mt-xs text-sm text-secondary-800">
+          Aprender a buscar información oficial con criterio, verificar la seguridad
+          de los enlaces web, descargar documentos en PDF y organizarlos en carpetas
+          temáticas fortalece la independencia en la realización de trámites personales
+          y el manejo ordenado de su información.
+        </p>
+      </div>
+    </aside>
+  </div>
+</SeccionBase>

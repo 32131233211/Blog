@@ -1,0 +1,422 @@
+---
+/* ============================================================
+   ENTRADA 4 (parte 2) — Evidencia (fotos) y Descripción
+   ============================================================
+   Estructura simétrica de dos columnas principales:
+     · Columna Izquierda: Capacitación 3 (Pautas de seguridad digital).
+     · Columna Derecha: Capacitación 4 (Navegación segura y organización).
+
+   Cada columna contiene una cuadrícula idéntica de 6 cuadros de
+   imagen distribuidos en 3 filas (2 cuadros por fila):
+     - Fila 1: Cuadros 1 y 2
+     - Fila 2: Cuadros 3 y 4
+     - Fila 3: Cuadros 5 y 6
+
+   CÓMO ASIGNAR FOTOS REALES:
+   Colocar los archivos en public/assets/sesion-3/ y public/assets/sesion-4/
+   (o ruta pública), y reemplazar la ruta en `src` correspondiente
+   (ej. "/assets/sesion-3/foto-1.jpeg"), ajustando también el texto
+   descriptivo de `alt` y `descripcion`.
+
+   AJUSTE DE ENCUADRE (`ajuste`):
+   Por defecto la imagen llena el recuadro 4:3 recortando sobrante
+   (ideal para fotos horizontales). Para capturas de pantalla del
+   celular (verticales), agregar `ajuste: "contain"` para mostrarlas
+   completas sin recortar, con relleno a los lados en vez de perder
+   contenido.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+
+interface FotoEvidencia {
+  /** Ruta pública del archivo de imagen. Si es null, renderiza el cuadro de reserva punteado. */
+  readonly src: string | null;
+  /** Texto alternativo accesible que describe el contenido de la imagen. */
+  readonly alt: string;
+  /** Pie de foto o descripción detallada de la evidencia. */
+  readonly descripcion: string;
+  /** Etiqueta indicativa del cuadro mientras esté pendiente de imagen. */
+  readonly etiqueta: string;
+  /**
+   * Cómo encajar la imagen dentro del recuadro 4:3.
+   * "cover" (por defecto): llena el recuadro recortando sobrante — ideal para fotos horizontales.
+   * "contain": muestra la imagen completa sin recortar, con relleno a los lados —
+   * usar en capturas de pantalla verticales, donde recortar perdería contenido relevante.
+   */
+  readonly ajuste?: "cover" | "contain";
+}
+
+/* ------------------------------------------------------------
+   COLUMNA IZQUIERDA: CAPACITACIÓN 3 (6 cuadros en 3 filas de 2)
+   Facilitador: Sebastián Corrales Sepúlveda | Temática: Pautas de seguridad digital
+   ------------------------------------------------------------ */
+const FOTOS_CAPACITACION_3: readonly FotoEvidencia[] = [
+  // Fila 1 (2 cuadros)
+  {
+    src: "/assets/sesion-3/Foto1.png",
+    alt: "Demostración de detección de mensajes SMS sospechosos (smishing) con enlaces falsos.",
+    descripcion: "Inicio y presentación de la capacitación.",
+    etiqueta: "Cuadro 1 — Presentación de la capacitación",
+  },
+  {
+    src: "/assets/sesion-3/Foto2.png",
+    alt: "Identificación de remitentes no verificados y señales de phishing en la bandeja de correo electrónico.",
+    descripcion: "Experiencias vividas con intetos de Fraudes.",
+    etiqueta: "Cuadro 2 — Experiencias vividas con intetos de Fraudes",
+  },
+  // Fila 2 (2 cuadros)
+  {
+    src: "/assets/sesion-3/Foto3.png",
+    alt: "Estrategia pedagógica para crear contraseñas robustas y memorables mediante frases clave.",
+    descripcion: "Explicación de como esta construido un mensaje Fraudulento.",
+    etiqueta: "Cuadro 3 — Manejo seguro de contraseñas",
+  },
+  {
+    src: "/assets/sesion-3/Foto4.png",
+    alt: "Explicación del segundo factor de autenticación (MFA) con código de verificación temporal en el celular.",
+    descripcion: "Actividad para reconocer mensajes engañosos.",
+    etiqueta: "Cuadro 4 — Construcción de mensajes Fraudulentos",
+  },
+  // Fila 3 (2 cuadros)
+  {
+    src: "/assets/sesion-3/Foto5.png",
+    alt: "Verificación de aplicaciones en tiendas oficiales Google Play Store y advertencia sobre archivos APK externos.",
+    descripcion:
+      "Explicaón de como estan estructurados los correos de Fraudulentos y como reconocerlos.",
+    etiqueta: "Cuadro 5 — Descarga segura de aplicaciones",
+  },
+  {
+    src: "/assets/sesion-3/Foto6.png",
+    alt: "Participantes respondiendo el cuestionario de evaluación sobre pautas de seguridad digital.",
+    descripcion:
+      "Consejos y reglas de seguridad para asegurar la integridad digital.",
+    etiqueta: "Cuadro 6 — Cuestionario de seguridad",
+  },
+];
+
+/* ------------------------------------------------------------
+   COLUMNA DERECHA: CAPACITACIÓN 4 (6 cuadros en 3 filas de 2)
+   Facilitador: Yeimi Liliana Calle Calvo | Temática: Navegación y organización
+   ------------------------------------------------------------ */
+const FOTOS_CAPACITACION_4: readonly FotoEvidencia[] = [
+  // Fila 1 (2 cuadros)
+  {
+    src: "/assets/sesion-4/foto-1.svg",
+    alt: "Verificación del candado de seguridad HTTPS en la barra de direcciones del navegador web.",
+    descripcion:
+      "Inspección de enlaces y verificación del candado de navegación segura antes de ingresar información.",
+    etiqueta: "Cuadro 1 — Verificación de enlaces web",
+  },
+  {
+    src: "/assets/sesion-4/foto-2.svg",
+    alt: "Práctica de búsqueda en internet reconociendo resultados confiables y diferenciándolos de publicidad.",
+    descripcion:
+      "Uso de buscadores en internet para localizar información oficial y citas médicas evitando anuncios engañosos.",
+    etiqueta: "Cuadro 2 — Navegación en buscadores",
+  },
+  // Fila 2 (2 cuadros)
+  {
+    src: "/assets/sesion-4/foto-3.svg",
+    alt: "Paso a paso para descargar documentos en formato PDF desde páginas institucionales.",
+    descripcion:
+      "Procedimiento guiado para descargar facturas y certificados en formato PDF de manera segura.",
+    etiqueta: "Cuadro 3 — Descarga de documentos",
+  },
+  {
+    src: "/assets/sesion-4/foto-4.svg",
+    alt: "Visualización de la carpeta de descargas en el administrador de archivos del celular.",
+    descripcion:
+      "Identificación de la carpeta de almacenamiento de descargas en la memoria interna del teléfono.",
+    etiqueta: "Cuadro 4 — Almacenamiento de archivos",
+  },
+  // Fila 3 (2 cuadros)
+  {
+    src: "/assets/sesion-4/foto-5.svg",
+    alt: "Estructura de carpetas organizadas por categorías como salud, recibos y documentos en el teléfono.",
+    descripcion:
+      "Creación y administración de carpetas temáticas para clasificar y ubicar documentos fácilmente.",
+    etiqueta: "Cuadro 5 — Organización en carpetas",
+  },
+  {
+    src: "/assets/sesion-4/foto-6.svg",
+    alt: "Participantes completando el cuestionario final de la capacitación sobre navegación y archivos.",
+    descripcion:
+      "Evaluación y cierre pedagógico del ciclo completo de capacitaciones de Sabios Digitales.",
+    etiqueta: "Cuadro 6 — Evaluación final de sesión",
+  },
+];
+---
+
+<SeccionBase
+  id="evidencias-capacitaciones"
+  titulo="Evidencia y descripción de las capacitaciones"
+  descripcion=""
+  fondo="alt"
+>
+  <!-- Contenedor principal de dos columnas: Izquierda = Capacitación 3 | Derecha = Capacitación 4 -->
+  <div class="grid grid-cols-1 gap-lg lg:grid-cols-2 lg:gap-xl">
+    <!-- ============================================================
+         COLUMNA IZQUIERDA: CAPACITACIÓN 3
+         ============================================================ -->
+    <article class="flex flex-col">
+      <header class="border-b border-line pb-sm">
+        <p class="text-xs font-semibold tracking-wider text-primary uppercase">
+          Capacitación 3 — Sesión práctica
+        </p>
+        <h3 class="mt-xs text-xl text-text">Pautas de seguridad digital</h3>
+        <p class="mt-xs text-sm text-text-muted">
+          <strong>&bull; Facilitador:</strong> Sebastián Corrales Sepúlveda <br
+          />
+          &bull;
+          <strong> Enfoque:</strong> SMS, correo electrónico, contraseñas, MFA y apps
+          seguras.
+        </p>
+        <div class="mt-sm rounded-sm bg-bg p-sm border border-line">
+          <p class="text-sm text-text-muted">
+            <strong>Descripción de la sesión:</strong> Con la participación de Christian
+            García, Glory Ariza, Fabiola Sepúlveda y Alcides Corrales, en esta sesión
+            se abordaron pautas fundamentales para protegerse de fraudes digitales
+            cotidianos. Se identificaron mensajes SMS sospechosos (smishing), correos
+            fraudulentos (phishing), la creación de contraseñas robustas pero fáciles
+            de recordar mediante frases clave, la activación y uso de la autenticación
+            multifactor (MFA) y la descarga segura de aplicaciones desde tiendas oficiales
+            como Google Play Store. Al cierre se realizó una evaluación diagnóstica
+            participativa.
+          </p>
+        </div>
+      </header>
+
+      <!-- Cuadrícula interna de 6 cuadros (3 filas x 2 columnas) -->
+      <ul class="mt-md grid grid-cols-2 gap-sm sm:gap-md" role="list">
+        {
+          FOTOS_CAPACITACION_3.map((foto) => (
+            <li class="flex flex-col">
+              <figure class="flex h-full flex-col">
+                {foto.src ? (
+                  <button
+                    type="button"
+                    class="group block w-full cursor-zoom-in overflow-hidden rounded-md border border-line"
+                    data-lightbox-trigger
+                    data-lightbox-src={foto.src}
+                    data-lightbox-alt={foto.alt}
+                    data-lightbox-caption={foto.descripcion}
+                    aria-label={`Ampliar imagen: ${foto.descripcion}`}
+                  >
+                    <img
+                      src={foto.src}
+                      alt={foto.alt}
+                      class={`aspect-4/3 w-full transition-transform duration-200 group-hover:scale-105 ${foto.ajuste === "contain" ? "object-contain bg-bg-alt p-xs" : "object-cover"}`}
+                      loading="lazy"
+                    />
+                  </button>
+                ) : (
+                  <div
+                    class="flex aspect-4/3 w-full flex-col items-center justify-center rounded-md border-2 border-dashed border-line bg-bg p-xs text-center transition-colors hover:border-primary-400"
+                    aria-label={foto.etiqueta}
+                  >
+                    <svg
+                      class="size-8 text-line sm:size-10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <circle cx="9" cy="10" r="1.5" />
+                      <path d="m4 17 5-5 4 4 3-2 4 4" />
+                    </svg>
+                    <span class="mt-xs text-xs font-medium text-text-muted line-clamp-1">
+                      {foto.etiqueta}
+                    </span>
+                  </div>
+                )}
+                <figcaption class="mt-xs text-xs sm:text-sm text-text-muted">
+                  {foto.descripcion}
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+
+    <!-- ============================================================
+         COLUMNA DERECHA: CAPACITACIÓN 4
+         ============================================================ -->
+    <article class="flex flex-col">
+      <header class="border-b border-line pb-sm">
+        <p
+          class="text-xs font-semibold tracking-wider text-secondary uppercase"
+        >
+          Capacitación 4 — Sesión práctica
+        </p>
+        <h3 class="mt-xs text-xl text-text">
+          Navegación segura y organización de documentos
+        </h3>
+        <p class="mt-xs text-sm text-text-muted">
+          <strong>&bull; Facilitador:</strong> Yeimi Liliana Calle Calvo <br />
+          &bull;
+          <strong> Enfoque:</strong> Verificación de enlaces, buscadores y organización
+          de archivos.
+        </p>
+        <div class="mt-sm rounded-sm bg-bg p-sm border border-line">
+          <p class="text-sm text-text-muted">
+            <strong>Descripción de la evidencia:</strong> En esta cuarta jornada se
+            capacitó a los participantes en la navegación crítica y el manejo ordenado
+            de archivos en sus dispositivos móviles. Se enseñó a revisar la barra
+            de direcciones y verificar enlaces antes de hacer clic, a realizar búsquedas
+            claras en buscadores web distinguiendo resultados legítimos de anuncios
+            sospechosos, a descargar documentos como facturas o formularios en PDF,
+            y a organizarlos en carpetas internas para encontrarlos con rapidez y
+            autonomía.
+          </p>
+        </div>
+      </header>
+
+      <!-- Cuadrícula interna de 6 cuadros (3 filas x 2 columnas) -->
+      <ul class="mt-md grid grid-cols-2 gap-sm sm:gap-md" role="list">
+        {
+          FOTOS_CAPACITACION_4.map((foto) => (
+            <li class="flex flex-col">
+              <figure class="flex h-full flex-col">
+                {foto.src ? (
+                  <button
+                    type="button"
+                    class="group block w-full cursor-zoom-in overflow-hidden rounded-md border border-line"
+                    data-lightbox-trigger
+                    data-lightbox-src={foto.src}
+                    data-lightbox-alt={foto.alt}
+                    data-lightbox-caption={foto.descripcion}
+                    aria-label={`Ampliar imagen: ${foto.descripcion}`}
+                  >
+                    <img
+                      src={foto.src}
+                      alt={foto.alt}
+                      class={`aspect-4/3 w-full transition-transform duration-200 group-hover:scale-105 ${foto.ajuste === "contain" ? "object-contain bg-bg-alt p-xs" : "object-cover"}`}
+                      loading="lazy"
+                    />
+                  </button>
+                ) : (
+                  <div
+                    class="flex aspect-4/3 w-full flex-col items-center justify-center rounded-md border-2 border-dashed border-line bg-bg p-xs text-center transition-colors hover:border-primary-400"
+                    aria-label={foto.etiqueta}
+                  >
+                    <svg
+                      class="size-8 text-line sm:size-10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <circle cx="9" cy="10" r="1.5" />
+                      <path d="m4 17 5-5 4 4 3-2 4 4" />
+                    </svg>
+                    <span class="mt-xs text-xs font-medium text-text-muted line-clamp-1">
+                      {foto.etiqueta}
+                    </span>
+                  </div>
+                )}
+                <figcaption class="mt-xs text-xs sm:text-sm text-text-muted">
+                  {foto.descripcion}
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+</SeccionBase>
+
+<!-- ============================================================
+     LIGHTBOX — visor de imagen ampliada, compartido por ambas
+     columnas. Se activa desde los botones con [data-lightbox-trigger].
+     ============================================================ -->
+<dialog
+  id="lightbox-evidencias"
+  class="m-auto w-[min(92vw,56rem)] max-h-[90vh] rounded-lg border border-line bg-bg p-0 open:flex open:flex-col"
+>
+  <div
+    class="flex items-center justify-between gap-sm border-b border-line p-sm"
+  >
+    <p id="lightbox-caption" class="text-sm text-text-muted pr-sm">&nbsp;</p>
+    <button
+      type="button"
+      id="lightbox-cerrar"
+      class="flex size-11 shrink-0 items-center justify-center rounded-sm text-text hover:bg-bg-alt"
+      aria-label="Cerrar imagen ampliada"
+    >
+      <svg
+        class="size-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </div>
+  <div class="flex-1 overflow-auto p-sm">
+    <img
+      id="lightbox-imagen"
+      src=""
+      alt=""
+      class="mx-auto max-h-[75vh] w-auto rounded-sm object-contain"
+    />
+  </div>
+</dialog>
+
+<script>
+  const dialogo = document.querySelector<HTMLDialogElement>(
+    "#lightbox-evidencias",
+  );
+  const imagen = document.querySelector<HTMLImageElement>("#lightbox-imagen");
+  const leyenda =
+    document.querySelector<HTMLParagraphElement>("#lightbox-caption");
+  const botonCerrar =
+    document.querySelector<HTMLButtonElement>("#lightbox-cerrar");
+
+  if (dialogo && imagen && leyenda && botonCerrar) {
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]")
+      .forEach((boton) => {
+        boton.addEventListener("click", () => {
+          const src = boton.dataset.lightboxSrc ?? "";
+          imagen.src = src;
+          imagen.alt = boton.dataset.lightboxAlt ?? "";
+          leyenda.textContent = boton.dataset.lightboxCaption ?? "";
+          dialogo.showModal();
+        });
+      });
+
+    botonCerrar.addEventListener("click", () => dialogo.close());
+
+    // Cerrar al hacer clic sobre el fondo (fuera del contenido del diálogo)
+    dialogo.addEventListener("click", (evento) => {
+      if (evento.target === dialogo) {
+        dialogo.close();
+      }
+    });
+
+    dialogo.addEventListener("close", () => {
+      imagen.src = "";
+    });
+  }
+</script>
+
+<style>
+  #lightbox-evidencias::backdrop {
+    background-color: rgb(40 40 40 / 80%);
+  }
+</style>

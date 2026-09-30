@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <style>
+      .bg { fill: #F7F6F4; }
+      .card-bg { fill: #FFFFFF; stroke: #C7C7C7; stroke-width: 2; rx: 16; }
+      .phone-frame { fill: #FFFFFF; stroke: #C95231; stroke-width: 3; rx: 28; }
+    </style>
+  </defs>
+
+  <rect width="800" height="600" class="bg" />
+  <rect x="40" y="30" width="720" height="540" class="card-bg" />
+
+  <!-- Header Bar -->
+  <path d="M 40 46 Q 40 30 56 30 L 744 30 Q 760 30 760 46 L 760 90 L 40 90 Z" fill="#EA5F39" />
+  <circle cx="75" cy="60" r="14" fill="#FFFFFF" opacity="0.2" />
+  <text x="75" y="66" text-anchor="middle" font-family="'Inter', sans-serif" font-size="18" fill="#FFFFFF">🗂️</text>
+  <text x="105" y="67" font-family="'Inter', sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Organización de Documentos · Creación y Gestión de Carpetas</text>
+
+  <!-- Left: Folder Structure Screen on Phone -->
+  <g transform="translate(80, 115)">
+    <rect x="0" y="0" width="280" height="425" class="phone-frame" />
+    <rect x="95" y="12" width="90" height="10" rx="5" fill="#C7C7C7" />
+
+    <!-- Top Action Bar -->
+    <rect x="15" y="35" width="250" height="42" rx="6" fill="#F7F6F4" />
+    <text x="30" y="62" font-family="'Inter', sans-serif" font-size="13" font-weight="700" fill="#282828">Mis Carpetas</text>
+    <rect x="175" y="44" width="75" height="24" rx="4" fill="#EA5F39" />
+    <text x="212" y="60" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">+ Nueva</text>
+
+    <!-- Folder Grid -->
+    <g transform="translate(25, 95)">
+      <!-- Folder 1: Salud -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="105" height="90" rx="8" fill="#F0F9F8" stroke="#0A9685" stroke-width="1.5" />
+        <circle cx="52" cy="30" r="16" fill="#0A9685" />
+        <text x="52" y="36" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14">🩺</text>
+        <text x="52" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#076C60">Salud y Citas</text>
+        <text x="52" y="78" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#5F5E5A">4 archivos</text>
+      </g>
+
+      <!-- Folder 2: Recibos -->
+      <g transform="translate(125, 0)">
+        <rect x="0" y="0" width="105" height="90" rx="8" fill="#FEF5F3" stroke="#EA5F39" stroke-width="1.5" />
+        <circle cx="52" cy="30" r="16" fill="#EA5F39" />
+        <text x="52" y="36" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14">🧾</text>
+        <text x="52" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#A84429">Recibos y Pago</text>
+        <text x="52" y="78" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#5F5E5A">8 archivos</text>
+      </g>
+
+      <!-- Folder 3: Documentos -->
+      <g transform="translate(0, 105)">
+        <rect x="0" y="0" width="105" height="90" rx="8" fill="#FEF9F1" stroke="#E79410" stroke-width="1.5" />
+        <circle cx="52" cy="30" r="16" fill="#E79410" />
+        <text x="52" y="36" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14">📄</text>
+        <text x="52" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#A66B0C">Documentos</text>
+        <text x="52" y="78" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#5F5E5A">3 archivos</text>
+      </g>
+
+      <!-- Folder 4: Familia -->
+      <g transform="translate(125, 105)">
+        <rect x="0" y="0" width="105" height="90" rx="8" fill="#F7F6F4" stroke="#C7C7C7" stroke-width="1" />
+        <circle cx="52" cy="30" r="16" fill="#5F5E5A" />
+        <text x="52" y="36" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14">👨‍👩‍👧</text>
+        <text x="52" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="700" fill="#282828">Fotos Familia</text>
+        <text x="52" y="78" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#5F5E5A">15 fotos</text>
+      </g>
+    </g>
+
+    <!-- Moving helper badge -->
+    <g transform="translate(25, 310)">
+      <rect x="0" y="0" width="230" height="60" rx="6" fill="#F0F9F8" stroke="#80C8C0" stroke-width="1" />
+      <text x="12" y="24" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#0A9685">Acción explicada en clase:</text>
+      <text x="12" y="42" font-family="'Inter', sans-serif" font-size="10" fill="#282828">Mantener presionado el archivo y elegir "Mover a carpeta".</text>
+    </g>
+
+    <rect x="90" y="405" width="100" height="5" rx="2.5" fill="#C7C7C7" />
+  </g>
+
+  <!-- Right: Principles of File Organization -->
+  <g transform="translate(390, 115)">
+    <text x="0" y="25" font-family="'Inter', sans-serif" font-size="22" font-weight="700" fill="#282828">El método de orden para el celular</text>
+    <text x="0" y="50" font-family="'Inter', sans-serif" font-size="14" fill="#5F5E5A">Capacitación práctica guiada por Yeimi Calle</text>
+
+    <!-- Principle 1 -->
+    <g transform="translate(0, 75)">
+      <rect x="0" y="0" width="330" height="65" rx="8" fill="#FFFFFF" stroke="#C7C7C7" stroke-width="1" />
+      <text x="18" y="26" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#EA5F39">1. Nombres claros y cortos</text>
+      <text x="18" y="48" font-family="'Inter', sans-serif" font-size="12" fill="#5F5E5A">Carpetas con nombres sencillos que indiquen el contenido.</text>
+    </g>
+
+    <!-- Principle 2 -->
+    <g transform="translate(0, 150)">
+      <rect x="0" y="0" width="330" height="65" rx="8" fill="#FFFFFF" stroke="#C7C7C7" stroke-width="1" />
+      <text x="18" y="26" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#0A9685">2. Rutina de mover y ordenar</text>
+      <text x="18" y="48" font-family="'Inter', sans-serif" font-size="12" fill="#5F5E5A">Al descargar una factura, pasarla de "Descargas" a su carpeta.</text>
+    </g>
+
+    <!-- Principle 3 -->
+    <g transform="translate(0, 225)">
+      <rect x="0" y="0" width="330" height="65" rx="8" fill="#FFFFFF" stroke="#C7C7C7" stroke-width="1" />
+      <text x="18" y="26" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#E79410">3. Borrar lo que ya no sirve</text>
+      <text x="18" y="48" font-family="'Inter', sans-serif" font-size="12" fill="#5F5E5A">Eliminar archivos duplicados para liberar espacio y memoria.</text>
+    </g>
+
+    <!-- Impact box -->
+    <rect x="0" y="305" width="330" height="75" rx="8" fill="#FEF5F3" stroke="#EA5F39" stroke-width="1" />
+    <text x="18" y="28" font-family="'Inter', sans-serif" font-size="13" font-weight="700" fill="#EA5F39">🌟 Logro con los adultos mayores:</text>
+    <text x="18" y="50" font-family="'Inter', sans-serif" font-size="12" fill="#282828">Lograron encontrar sus documentos sin pedir ayuda, ganando independencia y tranquilidad.</text>
+  </g>
+</svg>

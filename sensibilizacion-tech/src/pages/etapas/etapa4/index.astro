@@ -1,17 +1,36 @@
 ---
 /* ============================================================
-   RUTA "/etapas/etapa4" — PENDIENTE DE CONTENIDO
+   RUTA "/etapas/etapa4" — ENTRADA 4 DEL BLOG
    ============================================================
-   Ver src/pages/etapas/etapa3/index.astro: mismo caso, la ruta
-   ya está enlazada desde el menú pero el contenido de la
-   entrada todavía no está definido.
+   Desarrollo de las capacitaciones 3 y 4, evidencias fotográficas,
+   reflexión del proceso formativo y enlaces complementarios.
+
+   Esta página sólo COMPONE. Su contenido vive en _sections/,
+   que por el prefijo "_" no genera rutas propias en Astro.
+
+   El enlace del menú lateral apunta aquí a través de
+   ROUTES.entrada4, en src/Routes/navigation.ts.
    ============================================================ */
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import EncabezadoPagina from "../../../components/EncabezadoPagina.astro";
-import PantallaEnConstruccion from "../../../components/PantallaEnConstruccion.astro";
+import SeccionDescripcion from "./_sections/SeccionDescripcion.astro";
+import SeccionEvidencias from "./_sections/SeccionEvidencias.astro";
+import SeccionReflexion from "./_sections/SeccionReflexion.astro";
+import SeccionEnlaces from "./_sections/SeccionEnlaces.astro";
 ---
 
-<BaseLayout titulo="Entrada 4 — Puente Digital">
-  <EncabezadoPagina etiqueta="Entrada 4" titulo="Entrada 4" />
-  <PantallaEnConstruccion />
+<BaseLayout
+  titulo="Entrada 4 — Puente Digital"
+  descripcion="Desarrollo de las capacitaciones 3 y 4 de Puente Digital: evidencias fotográficas, pautas de seguridad digital, navegación segura y organización de documentos."
+>
+  <EncabezadoPagina
+    etiqueta="Entrada 4"
+    titulo="Seguridad digital, navegación y organización de documentos"
+    descripcion="Registro de las capacitaciones de Sensibilización Tecnológica 3 y 4: prevención de fraudes, contraseñas, navegación web confiable y gestión documental para adultos mayores."
+  />
+
+  <SeccionDescripcion />
+  <SeccionEvidencias />
+  <SeccionReflexion />
+  <SeccionEnlaces />
 </BaseLayout>
