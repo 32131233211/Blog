@@ -18,15 +18,7 @@ export interface NavLink {
   readonly external?: boolean;
 }
 
-/** Grupo desplegable: agrupa sub-rutas bajo una etiqueta. */
-export interface NavGroup {
-  readonly kind: "group";
-  readonly label: string;
-  readonly icon: string;
-  readonly children: readonly NavLink[];
-}
-
-export type NavItem = NavLink | NavGroup;
+export type NavItem = NavLink;
 
 /* ------------------------------------------------------------
    ÍCONOS
@@ -36,17 +28,17 @@ export type NavItem = NavLink | NavGroup;
    ------------------------------------------------------------ */
 const ICONS = {
   home: '<path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5" /><path d="M9.5 21v-6h5v6" />',
-  sessions:
-    '<path d="M12 7v14" /><path d="M3 18V5a1 1 0 0 1 1-1h5a3 3 0 0 1 3 3 3 3 0 0 1 3-3h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a2 2 0 0 0-2 2 2 2 0 0 0-2-2H4a1 1 0 0 1-1-1Z" />',
-  session: '<path d="M8 6h10" /><path d="M8 12h10" /><path d="M8 18h10" /><path d="M4 6h.01" /><path d="M4 12h.01" /><path d="M4 18h.01" />',
   stage: '<path d="M5 21V4" /><path d="M5 5h13l-2.5 3.5L18 12H5" />',
+  video: '<path d="m22 7-6 5 6 5V7Z" /><rect width="14" height="14" x="2" y="5" rx="2" />',
   cloud: '<path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97 6 6 0 0 0-11.66-1.4A4 4 0 0 0 6.5 19Z" />',
 } as const;
 
 /* ------------------------------------------------------------
-   ENLACE EXTERNO
-   Carpeta compartida del equipo en OneDrive (SharePoint UNIMINUTO).
+   ENLACES EXTERNOS
    ------------------------------------------------------------ */
+export const VIDEO_REFLEXION_URL =
+  "https://uniminuto0-my.sharepoint.com/:v:/g/personal/yeimy_calle_uniminuto_edu_co/IQCpWoB4sUGcRI3fkDvplb19Aagpwdg7OIR0tf5ct3oS92k?e=IYsWMP";
+
 export const ONEDRIVE_URL =
   "https://uniminuto0-my.sharepoint.com/:f:/g/personal/yeimy_calle_uniminuto_edu_co/IgAWvmauNsMuTp2YRI57MKY4AUrEF5FobMXAkVictHmos84?e=Lw8OYn";
 
@@ -61,14 +53,11 @@ export const ONEDRIVE_URL =
    ------------------------------------------------------------ */
 export const ROUTES = {
   inicio: "/",
-  sesion1: "/sesiones/sesion1",
-  sesion2: "/sesiones/sesion2",
-  sesion3: "/sesiones/sesion3",
-  sesion4: "/sesiones/sesion4",
   entrada1: "/etapas/etapa1",
   entrada2: "/etapas/etapa2",
   entrada3: "/etapas/etapa3",
   entrada4: "/etapas/etapa4",
+  videoReflexion: VIDEO_REFLEXION_URL,
   onedrive: ONEDRIVE_URL,
 } as const;
 
@@ -77,27 +66,23 @@ export const ROUTES = {
    ------------------------------------------------------------ */
 export const NAVIGATION: readonly NavItem[] = [
   { kind: "link", label: "Inicio", href: ROUTES.inicio, icon: ICONS.home },
-  {
-    kind: "group",
-    label: "Sesiones",
-    icon: ICONS.sessions,
-    children: [
-      { kind: "link", label: "Sesión 1", href: ROUTES.sesion1, icon: ICONS.session },
-      { kind: "link", label: "Sesión 2", href: ROUTES.sesion2, icon: ICONS.session },
-      { kind: "link", label: "Sesión 3", href: ROUTES.sesion3, icon: ICONS.session },
-      { kind: "link", label: "Sesión 4", href: ROUTES.sesion4, icon: ICONS.session },
-    ],
-  },
   { kind: "link", label: "Entrada 1", href: ROUTES.entrada1, icon: ICONS.stage },
   { kind: "link", label: "Entrada 2", href: ROUTES.entrada2, icon: ICONS.stage },
   { kind: "link", label: "Entrada 3", href: ROUTES.entrada3, icon: ICONS.stage },
   { kind: "link", label: "Entrada 4", href: ROUTES.entrada4, icon: ICONS.stage },
+  {
+    kind: "link",
+    label: "Video reflexión",
+    href: ROUTES.videoReflexion,
+    icon: ICONS.video,
+    external: true,
+  },
   { kind: "link", label: "OneDrive", href: ROUTES.onedrive, icon: ICONS.cloud, external: true },
 ];
 
 /**
  * Indica si una ruta del menú corresponde a la pantalla actual.
- * Considera activas también las sub-rutas (ej. /sesiones/sesion1/recursos).
+ * Considera activas también las sub-rutas (ej. /etapas/etapa1).
  */
 export function isActiveRoute(href: string, currentPath: string): boolean {
   const normalize = (value: string) =>

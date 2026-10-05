@@ -89,16 +89,14 @@ El patrón de navegación del sitio es un **menú lateral fijo (sidebar) sobre e
 Lo que se mantiene intacto de la idea original es el *espíritu* de "escritorio": todo a la vista, nada escondido detrás de un ícono.
 
 - **Menú lateral fijo a la izquierda**, de alto completo y ancho constante, desde `lg` (1024px). El menú está presente y COMPLETO en todas las pantallas y en todos los tamaños; nunca se transforma en menú hamburguesa, ni en móvil (ver "Responsive del menú" más abajo).
-- **Todos los links de texto a la vista**, siempre. Nada de menús colapsados por defecto.
-- **Menús desplegables activados por clic, no por hover.** Implementados con `<details>/<summary>` nativo — sin JavaScript, accesible por teclado y anunciado por lectores de pantalla.
-- **Los desplegables arrancan CERRADOS**, con una sola excepción: si la pantalla actual es una de sus sub-rutas, el grupo se renderiza abierto (`open={...}`), porque de lo contrario el menú ocultaría justo la página en la que está el usuario. Antes arrancaban siempre abiertos y, como cada navegación recarga la página entera, se reabrían solos en cada clic: resultaba molesto.
-- **Texto claro en cada link** (ej. "Inicio", "Sesión 1", "Entrada2"). Los íconos acompañan y refuerzan el texto; **nunca lo reemplazan**.
+- **Todos los links de texto a la vista**, siempre. Navegación directa y plana, sin menús colapsados ni desplegables.
+- **Texto claro en cada link** (ej. "Inicio", "Entrada 1", "Video reflexión"). Los íconos acompañan y refuerzan el texto; **nunca lo reemplazan**.
 - **El estado activo no se comunica solo con color**: se refuerza con `aria-current="page"`.
 - **Link "Saltar al contenido"** como primer elemento enfocable del `<body>`, para que el teclado no tenga que recorrer todo el menú en cada pantalla.
 - **El ancho del sidebar vive en `main.css`** como el token `--spacing-sidebar`. El menú usa `lg:w-sidebar` y el contenido `lg:ml-sidebar`, de modo que ambos no puedan desincronizarse. Nunca escribir ese ancho a mano.
 - **Responsive del menú — no es hamburguesa, es reflow.** Desde `lg` (1024px) el menú es la barra lateral fija descrita arriba. Por debajo de `lg` deja de ser fijo y se reordena como **bloque superior de ancho completo**, con TODOS los links a la vista en una grilla de 2 columnas: no se oculta, no se colapsa y no aparece ningún ícono que haya que tocar para verlo. Sigue siendo el mismo y único menú, sólo cambia de disposición.
 - **El desplazamiento del contenido va con prefijo: `lg:ml-sidebar`, nunca `ml-sidebar` a secas.** Sin el prefijo, en móvil el contenido queda empujado 320px fuera de la pantalla. Lo mismo aplica al `<aside>`: `lg:fixed lg:w-sidebar`, no `fixed w-sidebar`.
-- **Fuente única de rutas: `src/Routes/navigation.ts`.** Ahí se define la estructura completa del menú (links, grupos desplegables, íconos, enlaces externos) y el helper `isActiveRoute()`. El sidebar **consume** esa estructura, no declara links propios. Ahí vive además `ROUTES`, el mapa de rutas nombradas: **cualquier enlace interno dentro de una pantalla** (un botón del hero, un "ver más") toma su dirección de `ROUTES`, nunca escrita a mano. Al agregar o modificar una pantalla, la ruta se refleja PRIMERO ahí y el menú se actualiza solo — nunca al revés, ni con links sueltos en una página.
+- **Fuente única de rutas: `src/Routes/navigation.ts`.** Ahí se define la estructura completa del menú (links, íconos, enlaces externos) y el helper `isActiveRoute()`. El sidebar **consume** esa estructura, no declara links propios. Ahí vive además `ROUTES`, el mapa de rutas nombradas: **cualquier enlace interno dentro de una pantalla** (un botón del hero, un "ver más") toma su dirección de `ROUTES`, nunca escrita a mano. Al agregar o modificar una pantalla, la ruta se refleja PRIMERO ahí y el menú se actualiza solo — nunca al revés, ni con links sueltos en una página.
 
 **Estructura de una pantalla — no negociable:**
 
