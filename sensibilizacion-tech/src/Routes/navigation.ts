@@ -72,7 +72,7 @@ export const NAVIGATION: readonly NavItem[] = [
   { kind: "link", label: "Entrada 4", href: ROUTES.entrada4, icon: ICONS.stage },
   {
     kind: "link",
-    label: "Video reflexión",
+    label: "Video voz en off",
     href: ROUTES.videoReflexion,
     icon: ICONS.video,
     external: true,
