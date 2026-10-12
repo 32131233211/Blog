@@ -39,6 +39,9 @@ const ICONS = {
 export const VIDEO_REFLEXION_URL =
   "https://uniminuto0-my.sharepoint.com/:v:/g/personal/yeimy_calle_uniminuto_edu_co/IQCpWoB4sUGcRI3fkDvplb19Aagpwdg7OIR0tf5ct3oS92k?e=IYsWMP";
 
+export const VIDEO_AUTOEVALUACION_URL =
+  "https://uniminuto0-my.sharepoint.com/:v:/g/personal/yeimy_calle_uniminuto_edu_co/IQC12ZEgA9Y_S5RHft7uIU7iAQOX0L9YETXxoEE2-2lZiX0?e=zilkDo";
+
 export const ONEDRIVE_URL =
   "https://uniminuto0-my.sharepoint.com/:f:/g/personal/yeimy_calle_uniminuto_edu_co/IgAWvmauNsMuTp2YRI57MKY4AUrEF5FobMXAkVictHmos84?e=Lw8OYn";
 
@@ -58,6 +61,7 @@ export const ROUTES = {
   entrada3: "/etapas/etapa3",
   entrada4: "/etapas/etapa4",
   videoReflexion: VIDEO_REFLEXION_URL,
+  videoAutoevaluacion: VIDEO_AUTOEVALUACION_URL,
   onedrive: ONEDRIVE_URL,
 } as const;
 
@@ -74,6 +78,13 @@ export const NAVIGATION: readonly NavItem[] = [
     kind: "link",
     label: "Video voz en off",
     href: ROUTES.videoReflexion,
+    icon: ICONS.video,
+    external: true,
+  },
+  {
+    kind: "link",
+    label: "Autoevaluación",
+    href: ROUTES.videoAutoevaluacion,
     icon: ICONS.video,
     external: true,
   },
