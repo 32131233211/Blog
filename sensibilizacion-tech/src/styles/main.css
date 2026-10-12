@@ -134,6 +134,25 @@
   --spacing-sidebar: 20rem; /* 320px */
 
   /* ------------------------------------------------------------
+     ANCHO MÁXIMO (max-w-*)
+     Tailwind resuelve "max-w-<clave>" buscando en orden los
+     namespaces --max-width, --spacing y --container. Como arriba
+     ya se nombraron claves de espaciado xs/sm/md/lg/xl/2xl, CUALQUIER
+     max-w-xs/sm/md/lg/xl/2xl quedaría secuestrado por ese valor de
+     espaciado (ej. max-w-xl daría 4rem en vez de 36rem) en lugar del
+     ancho de contenedor esperado. Se fijan aquí explícitamente en
+     --max-width (el namespace que se revisa primero), con los mismos
+     valores por defecto de Tailwind, para que max-w-md/lg/xl/2xl
+     funcionen igual que max-w-3xl o max-w-5xl en cualquier pantalla.
+     ------------------------------------------------------------ */
+  --max-width-xs:  20rem;
+  --max-width-sm:  24rem;
+  --max-width-md:  28rem;
+  --max-width-lg:  32rem;
+  --max-width-xl:  36rem;
+  --max-width-2xl: 42rem;
+
+  /* ------------------------------------------------------------
      RADIOS DE BORDE
      Se redefinen los radios base de Tailwind (rounded-sm/md/lg)
      para que coincidan con el estilo del logo (esquinas suaves,
