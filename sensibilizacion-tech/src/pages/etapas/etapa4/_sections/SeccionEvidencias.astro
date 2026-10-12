@@ -383,41 +383,51 @@ const FOTOS_CAPACITACION_4: readonly FotoEvidencia[] = [
 </dialog>
 
 <script>
-  const dialogo = document.querySelector<HTMLDialogElement>(
-    "#lightbox-evidencias",
-  );
-  const imagen = document.querySelector<HTMLImageElement>("#lightbox-imagen");
-  const leyenda =
-    document.querySelector<HTMLParagraphElement>("#lightbox-caption");
-  const botonCerrar =
-    document.querySelector<HTMLButtonElement>("#lightbox-cerrar");
+  // El <ClientRouter /> de BaseLayout navega sin recargar la página, y
+  // Astro deduplica scripts inline por contenido: un script idéntico al
+  // de otra pantalla (ej. esta misma sección en Entrada 3) no se vuelve
+  // a ejecutar al navegar entre ellas. Por eso la lógica va enganchada a
+  // "astro:page-load" (se dispara en la carga inicial Y en cada
+  // navegación del router) en vez de correr una sola vez a nivel de
+  // módulo — si no, el zoom deja de responder tras navegar por el menú.
+  document.addEventListener("astro:page-load", () => {
+    const dialogo = document.querySelector<HTMLDialogElement>(
+      "#lightbox-evidencias",
+    );
+    const imagen =
+      document.querySelector<HTMLImageElement>("#lightbox-imagen");
+    const leyenda =
+      document.querySelector<HTMLParagraphElement>("#lightbox-caption");
+    const botonCerrar =
+      document.querySelector<HTMLButtonElement>("#lightbox-cerrar");
 
-  if (dialogo && imagen && leyenda && botonCerrar) {
-    document
-      .querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]")
-      .forEach((boton) => {
-        boton.addEventListener("click", () => {
-          const src = boton.dataset.lightboxSrc ?? "";
-          imagen.src = src;
-          imagen.alt = boton.dataset.lightboxAlt ?? "";
-          leyenda.textContent = boton.dataset.lightboxCaption ?? "";
-          dialogo.showModal();
+    if (dialogo && imagen && leyenda && botonCerrar) {
+      document
+        .querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]")
+        .forEach((boton) => {
+          boton.addEventListener("click", () => {
+            const src = boton.dataset.lightboxSrc ?? "";
+            imagen.src = src;
+            imagen.alt = boton.dataset.lightboxAlt ?? "";
+            leyenda.textContent = boton.dataset.lightboxCaption ?? "";
+            dialogo.showModal();
+          });
         });
+
+      botonCerrar.addEventListener("click", () => dialogo.close());
+
+      // Cerrar al hacer clic sobre el fondo (fuera del contenido del diálogo)
+      dialogo.addEventListener("click", (evento) => {
+        if (evento.target === dialogo) {
+          dialogo.close();
+        }
       });
 
-    botonCerrar.addEventListener("click", () => dialogo.close());
-
-    // Cerrar al hacer clic sobre el fondo (fuera del contenido del diálogo)
-    dialogo.addEventListener("click", (evento) => {
-      if (evento.target === dialogo) {
-        dialogo.close();
-      }
-    });
-
-    dialogo.addEventListener("close", () => {
-      imagen.src = "";
-    });
-  }
+      dialogo.addEventListener("close", () => {
+        imagen.src = "";
+      });
+    }
+  });
 </script>
 
 <style>

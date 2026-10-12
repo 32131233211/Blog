@@ -60,6 +60,7 @@ export const ROUTES = {
   entrada2: "/etapas/etapa2",
   entrada3: "/etapas/etapa3",
   entrada4: "/etapas/etapa4",
+  entrada5: "/etapas/etapa5",
   videoReflexion: VIDEO_REFLEXION_URL,
   videoAutoevaluacion: VIDEO_AUTOEVALUACION_URL,
   onedrive: ONEDRIVE_URL,
@@ -74,6 +75,7 @@ export const NAVIGATION: readonly NavItem[] = [
   { kind: "link", label: "Entrada 2", href: ROUTES.entrada2, icon: ICONS.stage },
   { kind: "link", label: "Entrada 3", href: ROUTES.entrada3, icon: ICONS.stage },
   { kind: "link", label: "Entrada 4", href: ROUTES.entrada4, icon: ICONS.stage },
+  { kind: "link", label: "Entrada 5", href: ROUTES.entrada5, icon: ICONS.stage },
   {
     kind: "link",
     label: "Video voz en off",

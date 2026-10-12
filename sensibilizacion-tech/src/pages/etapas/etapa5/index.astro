@@ -1,0 +1,32 @@
+---
+/* ============================================================
+   RUTA "/etapas/etapa5" — ENTRADA 5 DEL BLOG
+   ============================================================
+   Pantalla breve de autoevaluación: un video y la evidencia del
+   formulario diligenciado. Sin cuestionario ni descripción larga.
+
+   Esta página sólo COMPONE. Su contenido vive en _sections/,
+   que por el prefijo "_" no genera rutas propias en Astro.
+
+   El enlace del menú lateral apunta aquí a través de
+   ROUTES.entrada5, en src/Routes/navigation.ts.
+   ============================================================ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import EncabezadoPagina from "../../../components/EncabezadoPagina.astro";
+import SeccionVideo from "./_sections/SeccionVideo.astro";
+import SeccionEvidencia from "./_sections/SeccionEvidencia.astro";
+---
+
+<BaseLayout
+  titulo="Entrada 5 — Puente Digital"
+  descripcion="Autoevaluación del proceso formativo: video de cierre y evidencia del formulario diligenciado por los participantes."
+>
+  <EncabezadoPagina
+    etiqueta="Entrada 5"
+    titulo="Autoevaluación del proceso formativo"
+    descripcion="Cierre de las capacitaciones de Sensibilización Tecnológica: video de autoevaluación y evidencia del formulario diligenciado."
+  />
+
+  <SeccionVideo />
+  <SeccionEvidencia />
+</BaseLayout>

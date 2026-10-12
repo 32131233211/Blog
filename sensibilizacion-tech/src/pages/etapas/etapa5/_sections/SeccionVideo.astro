@@ -1,0 +1,74 @@
+---
+/* ============================================================
+   ENTRADA 5 (parte 1) — Video de autoevaluación
+   ============================================================
+   Tarjeta única de acceso al video, mismo patrón que las
+   tarjetas de video de Entrada 3/4 (SeccionEnlaces.astro).
+
+   PENDIENTE: este link es el de "Compartir" de SharePoint
+   (:v:/g/...), que responde con `Content-Security-Policy:
+   frame-ancestors 'none'` — NO puede embeberse en un <iframe>.
+   Cuando se consiga el link de "Insertar/Embed" (el que SharePoint
+   entrega como snippet <iframe src="...embed.aspx...">), reemplazar
+   esta tarjeta por un <iframe> usando ese src.
+   ============================================================ */
+import SeccionBase from "../../../../components/SeccionBase.astro";
+import { VIDEO_AUTOEVALUACION_URL } from "../../../../Routes/navigation";
+---
+
+<SeccionBase id="video-autoevaluacion" titulo="Video de autoevaluación" descripcion="" fondo="base">
+  <article class="card mx-auto flex max-w-xl flex-col justify-between border border-line">
+    <div>
+      <div class="flex items-center gap-xs">
+        <svg
+          class="size-5 shrink-0 text-secondary"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <polygon points="23 7 16 12 23 17 23 7" />
+          <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+        </svg>
+        <span class="text-xs font-semibold tracking-wider text-secondary uppercase">
+          Grabación en SharePoint
+        </span>
+      </div>
+
+      <h3 class="mt-xs text-xl text-text">Video: Autoevaluación</h3>
+      <p class="mt-sm text-sm text-text-muted">
+        Cierre del proceso formativo con la reflexión y autoevaluación de los
+        participantes sobre lo aprendido durante las capacitaciones.
+      </p>
+    </div>
+
+    <div class="mt-md border-t border-line/60 pt-sm">
+      <a
+        href={VIDEO_AUTOEVALUACION_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver video: Autoevaluación (se abre en una pestaña nueva)"
+        class="flex min-h-11 items-center justify-center gap-xs rounded-sm bg-primary px-sm py-xs text-center text-sm font-medium text-white no-underline transition-colors hover:bg-primary-600"
+      >
+        <span aria-hidden="true">Ver video</span>
+        <svg
+          class="size-4 shrink-0"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      </a>
+    </div>
+  </article>
+</SeccionBase>
